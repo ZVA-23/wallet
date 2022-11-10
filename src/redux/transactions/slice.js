@@ -1,8 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createTransaction, deleteTransaction, getAllTransactions, updateTransaction } from "./operations";
+import {
+    createTransaction,
+    deleteTransaction,
+    getAllTransactions,
+    getTransactionCategories,
+    getTransactionsSummary,
+    updateTransaction
+} from "./operations";
 
 const initialState = {
     items: [],
+    categories: [],
+    summary: null,
     isLoading: false,
     error: null,
 }
@@ -46,6 +55,18 @@ const transactionsSlice = createSlice({
             state.error = null;
             const index = state.items.findIndex(task => task.id === action.payload.id);
             state.items.splice(index, 1, action.payload);
+        },
+        [getTransactionCategories.pending]: handlePending,
+        [getTransactionCategories.rejected]: handleRejected,
+        [getTransactionCategories.fulfilled](state, action) {
+            state.isLoading = false;
+            state.categories = action.payload;
+        },
+        [getTransactionsSummary.pending]: handlePending,
+        [getTransactionsSummary.rejected]: handleRejected,
+        [getTransactionsSummary.fulfilled](state, action) {
+            state.isLoading = false;
+            state.summary = action.payload;
         },
     }
 })

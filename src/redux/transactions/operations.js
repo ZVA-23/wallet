@@ -27,9 +27,9 @@ export const getAllTransactions = createAsyncThunk(
 
 export const updateTransaction = createAsyncThunk(
     'transactions/update',
-    async (transactionId, thunkApi) => {
+    async (transaction, thunkApi) => {
         try {
-            const { data } = await axios.patch(`/transactions/${transactionId}`);
+            const { data } = await axios.patch(`/transactions/${transaction.id}`, transaction);
             return data;
         } catch (e) {
             return thunkApi.rejectWithValue(e.message)
