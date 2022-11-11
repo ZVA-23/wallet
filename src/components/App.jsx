@@ -4,11 +4,8 @@
 import { LoginForm } from './LoginForm/LoginForm';
 import { RegisterForm } from './RegistrationForm/RegistrationForm';
 
-
-
 export const App = () => {
-//const dispatch = useDispatch();
-
+  //const dispatch = useDispatch();
 
   return (
     <div
@@ -21,8 +18,8 @@ export const App = () => {
         color: '#010101',
       }}
     >
-      <RegisterForm/>
-      <LoginForm/>
+      <RegisterForm />
+      <LoginForm />
     </div>
   );
 };
