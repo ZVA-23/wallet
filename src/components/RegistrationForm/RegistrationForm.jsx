@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 import { register } from 'redux/auth/operations';
 import TextField from '@mui/material/TextField';
 import { InputAdornment } from '@mui/material';
+// import styled from 'styled-components';
+import { RegisteredFormContainer } from './RegistrationForm.styled';
+// import { Container } from 'components/Container/Container';
 export const RegisterForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -55,61 +58,76 @@ export const RegisterForm = () => {
       validationSchema={validation}
     >
       <Form onSubmit={handleSubmit}>
-        <p>Wallet</p>
-        <TextField
-          type="email"
-          name="email"
-          label="E-mail"
-          color="primary"
-          value={email}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
-          }}
-        />
-        <TextField
-          type="password"
-          name="password"
-          label="Пароль"
-          value={password}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
-          }}
-        />
-        <TextField
-          type="password"
-          name="confirmPassword"
-          label="Подтвердите пароль"
-          value={password}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
-          }}
-        />
-        <TextField
-          type="text"
-          name="username"
-          label="Ваше имя"
-          value={username}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
-          }}
-        />
-        <Button type="submit">Регистрация</Button>
-        <Link to="/login">
-          <Button variant="outlined">Вход</Button>
-        </Link>
+        {' '}
+        <RegisteredFormContainer>
+          <p>Wallet</p>
+          <TextField
+            type="email"
+            name="email"
+            label="E-mail"
+            color="primary"
+            value={email}
+            onChange={handleChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start"></InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            type="password"
+            name="password"
+            label="Пароль"
+            value={password}
+            onChange={handleChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start"></InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            type="password"
+            name="confirmPassword"
+            label="Подтвердите пароль"
+            value={password}
+            onChange={handleChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start"></InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            type="text"
+            name="username"
+            label="Ваше имя"
+            value={username}
+            onChange={handleChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start"></InputAdornment>
+              ),
+            }}
+          />
+          <Link to="/login">
+            <Button type="submit" variant="outlined">
+              Login
+            </Button>
+          </Link>
+
+          <Button type="submit" variant="outlined">
+            Регистрация
+          </Button>
+        </RegisteredFormContainer>{' '}
       </Form>
     </Formik>
   );
 };
 
-  /* <form onSubmit={handleSubmit}> */
+/* <form onSubmit={handleSubmit}> */
 
-
-  /* <TextField
+/* <TextField
         label="Name:"
         variant="outlined"
         type="text"
@@ -135,7 +153,6 @@ export const RegisterForm = () => {
         value={password}
         onChange={handleChange}
       />  */
-
 
 //           <Button type="submit" variant="outlined">
 //             Register

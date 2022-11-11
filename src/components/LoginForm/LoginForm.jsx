@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import { RegisteredFormContainer } from 'components/RegistrationForm/RegistrationForm.styled';
 // import s from './LoginForm.module.css';
 
 export const LoginForm = () => {
@@ -33,6 +34,7 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <RegisteredFormContainer>
       <TextField
         id="outlined-basic"
         label="Email:"
@@ -55,7 +57,7 @@ export const LoginForm = () => {
         autoComplete="false"
         required
       />
-
+</RegisteredFormContainer>
       <Button type="submit" variant="outlined">
         Login
       </Button>
