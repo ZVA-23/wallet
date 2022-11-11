@@ -5,12 +5,10 @@ import { LoginForm } from './LoginForm/LoginForm';
 import { RegisterForm } from './RegistrationForm/RegistrationForm';
 
 
-export const App = () => {
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+export const App = () => {
+	const dispatch = useDispatch();
+
 
   return (
     <div
