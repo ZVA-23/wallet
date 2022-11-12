@@ -1,11 +1,13 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { refreshUser } from 'redux/auth/operations';
 import { selectAuth } from 'redux/selectors';
 import { getTransactionCategories } from 'redux/transactions/operations';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage/RegistrationPage'));
@@ -22,6 +24,7 @@ export const App = () => {
 
   if (isRefreshing) return <div className="text-center">Refreshing user...</div>;
   return (
+    <>
     <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Navigate to="/register" replace />} />
@@ -40,5 +43,7 @@ export const App = () => {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
+    <ToastContainer position="bottom-center" autoClose={2000} />
+    </>
   );
 };
