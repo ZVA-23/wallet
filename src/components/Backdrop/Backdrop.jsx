@@ -4,17 +4,17 @@ import { BackdropDiv } from "./Backdrop.styled"
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Backdrop = ({ children }) => {
+export const Backdrop = ({ children, showModalHandler }) => {
 
 	const handleKeyDown = (e) => {
 		if (e.code === "Escape") {
-			// onClose();
+			showModalHandler();
 		}
 	}
 
 	const handleBackdropclick = (e) => {
 		if (e.target === e.currentTarget) {
-			// onClose();
+			showModalHandler();
 		}
 	}
 
