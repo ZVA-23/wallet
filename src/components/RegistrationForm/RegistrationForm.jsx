@@ -1,18 +1,25 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
+
+import { validate } from 'indicative/validator';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { register } from 'redux/auth/operations';
-import TextField from '@mui/material/TextField';
-import { InputAdornment } from '@mui/material';
+import { ReactComponent as LogoWallet } from '../../images/svg/wallet.svg';
+
+import { toast } from 'react-toastify';
+import {
+	InputField,
+	SubmitBtn,
+	RegisterFormContainer,
+	Form,
+	BtnContainer,
+} from './RegistrationForm.styled';
 
 export const RegisterForm = () => {
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [confirmPassword, setConfirmPassword] = useState('');
 	const dispatch = useDispatch();
 	const handleChange = ({ target: { name, value } }) => {
 		switch (name) {
@@ -25,125 +32,80 @@ export const RegisterForm = () => {
 			case 'password':
 				setPassword(value);
 				break;
-			default:
+			case 'confirmPassword':
+				setConfirmPassword(value);
 				break;
+			default:
+				return;
 		}
+	};
+	const schema = {
+		username: 'required|alpha',
+		password: 'required|min:4|max:40',
+		confirmPassword: `equals:${password}`,
+
+		email: 'required|email',
 	};
 	const handleSubmit = event => {
 		event.preventDefault();
-		dispatch(register({ username, email, password }));
-		setUsername('');
-		setEmail('');
-		setPassword('');
+		const user = { username, email, password, confirmPassword };
+		validate(user, schema)
+			.then(() => {
+				const { username, email, password } = user;
+				dispatch(register({ username, email, password }));
+				setUsername('');
+				setEmail('');
+				setPassword('');
+				setConfirmPassword('');
+			})
+			.catch(() => toast.error('You have some invalid fields!'));
 	};
-	const validation = Yup.object({
-		username: Yup.string()
-			.min(1, 'Name must be at least 1 character')
-			.max(12, 'Must be 12 characters or less')
-			.required('Required'),
-		email: Yup.string().email('Email is invalid').required('Email is required'),
-		password: Yup.string()
-			.min(6, 'Password must be at least 6 character')
-			.max(12, 'Must be 12 characters or less')
-			.required('Password is required'),
-		confirmPassword: Yup.string()
-			.oneOf([Yup.ref('password'), null], 'Password must match')
-			.required('Confirm password is required'),
-	});
 	return (
-		<Formik
-			initialValues={{ username, email, password }}
-			validationSchema={validation}
-		>
+		<RegisterFormContainer>
 			<Form onSubmit={handleSubmit}>
+				<LogoWallet width='20' />
+
 				<p>Wallet</p>
-				<TextField
+				<InputField
 					type="email"
 					name="email"
-					label="E-mail"
 					color="primary"
+					placeholder="E-mail"
 					value={email}
 					onChange={handleChange}
-					InputProps={{
-						startAdornment: <InputAdornment position="start"></InputAdornment>,
-					}}
+
 				/>
-				<TextField
+				<InputField
 					type="password"
 					name="password"
-					label="Пароль"
 					value={password}
+					placeholder="Password"
 					onChange={handleChange}
-					InputProps={{
-						startAdornment: <InputAdornment position="start"></InputAdornment>,
-					}}
+
 				/>
-				<TextField
+				<InputField
 					type="password"
 					name="confirmPassword"
-					label="Подтвердите пароль"
-					value={password}
+					placeholder="Confirm password"
+					value={confirmPassword}
 					onChange={handleChange}
-					InputProps={{
-						startAdornment: <InputAdornment position="start"></InputAdornment>,
-					}}
+
 				/>
-				<TextField
+				<InputField
 					type="text"
 					name="username"
-					label="Ваше имя"
+					placeholder="First name"
 					value={username}
 					onChange={handleChange}
-					InputProps={{
-						startAdornment: <InputAdornment position="start"></InputAdornment>,
-					}}
+
 				/>
-				<Button type="submit">Регистрация</Button>
-				<Link to="/login">
-					<Button variant="outlined">Вход</Button>
-				</Link>
+				<BtnContainer>
+					<SubmitBtn type="submit">Register</SubmitBtn>
+					<Link to="/login">
+						<SubmitBtn variant="outlined">Log in</SubmitBtn>
+					</Link>
+				</BtnContainer>
 			</Form>
-		</Formik>
+		</RegisterFormContainer>
 	);
 };
-
-/* <form onSubmit={handleSubmit}> */
-
-
-/* <TextField
-		label="Name:"
-		variant="outlined"
-		type="text"
-		name="username"
-		value={username}
-		onChange={handleChange}
-	 />
-
-	 <TextField
-		label="Email:"
-		variant="outlined"
-		type="email"
-		name="email"
-		value={email}
-		onChange={handleChange}
-	 />
-
-	 <TextField
-		label="Password:"
-		variant="outlined"
-		type="password"
-		name="password"
-		value={password}
-		onChange={handleChange}
-	 />  */
-
-
-//           <Button type="submit" variant="outlined">
-//             Register
-//           </Button>
-//           {/* </form> */}
-//         </Form>
-//       )}
-//     </Formik>
-//   );
-// };
