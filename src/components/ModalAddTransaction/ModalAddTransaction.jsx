@@ -35,20 +35,21 @@ export const ModalAddTransactions = () => {
 
 	const formFieldHandler = e => {
 		switch (e.target.name) {
-			case "amount":
-				setAmount(e.target.value)
+			case 'amount':
+				setAmount(e.target.value);
 				break;
-			case "comment":
-				setComment(e.target.value)
+			case 'comment':
+				setComment(e.target.value);
 				break;
 
-			default: return;
+			default:
+				return;
 		}
-	}
+	};
 
 	const selectListHandler = () => {
 		setSelector(!selector);
-	}
+	};
 
 	const validator = {
 		transactionDate: 'required|string',
@@ -74,11 +75,11 @@ export const ModalAddTransactions = () => {
 	}
 
 	const selectedOptionHandler = e => {
-		if (e.target.nodeName === "LI") {
+		if (e.target.nodeName === 'LI') {
 			setSelectedOption(e.target.textContent);
 			setSelector(false);
 		}
-	}
+	};
 
 	const changeDate = e => {
 		setTransactionDate(e ? e.format("YYYY-MM-DD") : (new Date().toISOString().split('T')[0]))
