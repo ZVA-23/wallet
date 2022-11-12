@@ -105,7 +105,7 @@ export const RegisterForm = () => {
 						<SubmitBtn variant="outlined">Log in</SubmitBtn>
 					</Link>
 				</BtnContainer>
-			</Form>
-		</RegisterFormContainer>
+			</Form >
+		</RegisterFormContainer >
 	);
 };
