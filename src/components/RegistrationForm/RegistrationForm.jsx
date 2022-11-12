@@ -1,4 +1,3 @@
-
 import { validate } from 'indicative/validator';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -41,9 +40,8 @@ export const RegisterForm = () => {
   };
   const schema = {
     username: 'required|alpha',
-    password: 'required|min:4|max:40',
+    password: 'required|min:6|max:12',
     confirmPassword: `equals:${password}`,
-
     email: 'required|email',
   };
   const handleSubmit = event => {
@@ -63,8 +61,8 @@ export const RegisterForm = () => {
   return (
     <RegisterFormContainer>
       <Form onSubmit={handleSubmit}>
-        <LogoWallet width='20'/>
-      
+        <LogoWallet width="20" />
+
         <p>Wallet</p>
         <InputField
           type="email"
@@ -73,7 +71,6 @@ export const RegisterForm = () => {
           placeholder="E-mail"
           value={email}
           onChange={handleChange}
-          
         />
         <InputField
           type="password"
@@ -81,7 +78,6 @@ export const RegisterForm = () => {
           value={password}
           placeholder="Password"
           onChange={handleChange}
-         
         />
         <InputField
           type="password"
@@ -89,7 +85,6 @@ export const RegisterForm = () => {
           placeholder="Confirm password"
           value={confirmPassword}
           onChange={handleChange}
-         
         />
         <InputField
           type="text"
@@ -97,13 +92,12 @@ export const RegisterForm = () => {
           placeholder="First name"
           value={username}
           onChange={handleChange}
-          
         />
         <BtnContainer>
-        <SubmitBtn type="submit">Register</SubmitBtn>
-        <Link to="/login">
-          <SubmitBtn variant="outlined">Log in</SubmitBtn>
-        </Link>
+          <SubmitBtn type="submit">Register</SubmitBtn>
+          <Link to="/login">
+            <SubmitBtn variant="outlined">Log in</SubmitBtn>
+          </Link>
         </BtnContainer>
       </Form>
     </RegisterFormContainer>

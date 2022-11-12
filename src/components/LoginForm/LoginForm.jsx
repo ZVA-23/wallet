@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
-import { Button } from '@mui/material';
-import TextField from '@mui/material/TextField';
-// import s from './LoginForm.module.css';
+// import { Button } from '@mui/material';
+// import TextField from '@mui/material/TextField';
+import { validate } from 'indicative/validator';
+import { toast } from 'react-toastify';
+import { LoginContainer, EnterForm, LoginBtn, InputField } from './LoginForm.styled';
+
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -24,41 +27,55 @@ export const LoginForm = () => {
     }
   };
 
+  const schema ={
+    email: 'email',
+    password: 'required|min:6|max:12',
+  }
+
   const handleSubmit = event => {
     event.preventDefault();
+    const user = {email, password};
+    validate(user, schema)
+    .then(()=> {
+      const {email, password} = user;
     dispatch(logIn({ email, password }));
     setEmail('');
     setPassword('');
+  })
+  .catch(() => toast.error('You have some invalid fields!'))
   };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
+    <LoginContainer>
+    <EnterForm onSubmit={handleSubmit}>
+      <InputField
         id="outlined-basic"
         label="Email:"
         variant="outlined"
         type="email"
         name="email"
+        placeholder='E-mail'
         value={email}
         onChange={handleChange}
         required
       />
 
-      <TextField
+      <InputField
         id="outlined-basic2"
         label="Password*"
         variant="outlined"
         type="password"
         name="password"
+        placeholder='Password'
         value={password}
         onChange={handleChange}
         autoComplete="false"
         required
       />
 
-      <Button type="submit" variant="outlined">
+      <LoginBtn type="submit" variant="outlined">
         Login
-      </Button>
-    </form>
+      </LoginBtn>
+    </EnterForm>
+    </LoginContainer>
   );
 };
