@@ -82,19 +82,19 @@ export const ModalAddTransactions = ({ showModalHandler }) => {
 		}
 
 		validate(data, validator)
-			.then(data => {
+			.then(() => {
 				dispatch(createTransaction(data));
 
 				showModalHandler();
+				toast.success("Transation is added!")
 				setTransactionDate(new Date().toISOString().split('T')[0]);
 				setAmount("");
 				setComment("");
-				categoryId("");
+				setCategoryId("");
 				setSelectedOption("Select a category");
 			})
-			.catch(error => {
-				console.log("error");
-				toast.error('ТУТ ДОЛЖЕН БЫТЬ ТОСТ');
+			.catch(() => {
+				toast.error("Something went wrong, check your fields and try again");
 			})
 	}
 
