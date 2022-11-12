@@ -1,26 +1,26 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { validate } from 'indicative/validator';
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { selectTransactions } from "redux/selectors";
 import { createTransaction } from "redux/transactions/operations";
 import { ReactComponent as Arrow } from "../../icons/add-transactions/arrow-selector.svg";
 import { AddTransactionsWrapper, Title, CheckWrapper, Expense, Income, Checkbox, CastomCheckbox, CastomCheckboxWrapp, Form, InputField, Comment, SubmitBtn, CancelBtn, SelectorWrapper, Selector, SelectList, SelectListItem, DateInput, InputWrapper } from "./ModalAddTransaction.styled"
 
-import { validate } from 'indicative/validator'
-import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
-export const ModalAddTransactions = () => {
+export const ModalAddTransactions = ({ showModalHandler }) => {
 	const dispatch = useDispatch();
+	const categories = useSelector(selectTransactions);
 
 	const [checked, setChecked] = useState(false);
 	const [option, setOption] = useState(true);
 	const [transactionDate, setTransactionDate] = useState(new Date().toISOString().split('T')[0]);
-	const [type, setType] = useState("INCOME");
+	const [type, setType] = useState("EXPENSE");
 	const [amount, setAmount] = useState("");
 	const [comment, setComment] = useState("");
-	const [categoryId, setCategoryId] = useState("063f1132-ba5d-42b4-951d-44011ca46262");
+	const [categoryId, setCategoryId] = useState("");
 	const [selector, setSelector] = useState(false);
 	const [selectedOption, setSelectedOption] = useState("Select a category");
-
 
 	const handleCheckbox = () => {
 		setChecked(!checked)
@@ -30,6 +30,7 @@ export const ModalAddTransactions = () => {
 			setType("EXPENSE")
 		} else {
 			setType("INCOME")
+			setCategoryId("063f1132-ba5d-42b4-951d-44011ca46262")
 		}
 	}
 
@@ -51,38 +52,54 @@ export const ModalAddTransactions = () => {
 		setSelector(!selector);
 	};
 
-	const validator = {
-		transactionDate: 'required|string',
-		type: 'string',
-		categoryId: 'required|string',
-		comment: 'string',
-		amount: 'required|integer|above:0',
-	}
-
-	const submitHandler = e => {
-		e.preventDefault();
-
-		const data = { transactionDate, type, categoryId, comment, amount }
-
-		validate(data, validator)
-			.then(data => {
-				dispatch(createTransaction(data));
-			})
-			.catch(error => {
-				console.log("error");
-				toast.error('Error during service worker registration: ');
-			})
-	}
-
 	const selectedOptionHandler = e => {
 		if (e.target.nodeName === 'LI') {
 			setSelectedOption(e.target.textContent);
 			setSelector(false);
+			setCategoryId(e.target.id);
 		}
 	};
 
 	const changeDate = e => {
 		setTransactionDate(e ? e.format("YYYY-MM-DD") : (new Date().toISOString().split('T')[0]))
+	}
+
+	const validator = {
+		transactionDate: 'required|string',
+		type: 'string',
+		categoryId: 'required|string',
+		comment: 'string',
+		amount: 'required|integer',
+	}
+
+	const submitHandler = e => {
+		e.preventDefault();
+
+		const data = { transactionDate, type, categoryId, comment, amount };
+
+		if (type === "EXPENSE") {
+			data.amount = "-" + amount;
+		}
+
+		validate(data, validator)
+			.then(data => {
+				dispatch(createTransaction(data));
+
+				showModalHandler();
+				setTransactionDate(new Date().toISOString().split('T')[0]);
+				setAmount("");
+				setComment("");
+				categoryId("");
+				setSelectedOption("Select a category");
+			})
+			.catch(error => {
+				console.log("error");
+				toast.error('ТУТ ДОЛЖЕН БЫТЬ ТОСТ');
+			})
+	}
+
+	const onButtonClick = () => {
+		showModalHandler()
 	}
 
 	return <AddTransactionsWrapper>
@@ -100,9 +117,7 @@ export const ModalAddTransactions = () => {
 			{!checked && <SelectorWrapper>
 				<Selector onClick={selectListHandler}>{selectedOption} <Arrow /></Selector>
 				{selector && <SelectList onClick={selectedOptionHandler}>
-					<SelectListItem>Car</SelectListItem>
-					<SelectListItem>Food</SelectListItem>
-					<SelectListItem>Alcohol</SelectListItem>
+					{categories.categories.map(({ id, name }) => <SelectListItem key={id} id={id}>{name}</SelectListItem>)}
 				</SelectList>}
 			</SelectorWrapper>}
 			<InputWrapper>
@@ -112,6 +127,6 @@ export const ModalAddTransactions = () => {
 			<Comment value={comment} name="comment" placeholder="Comment" onChange={formFieldHandler}></Comment>
 			<SubmitBtn type="submit">Add</SubmitBtn>
 		</Form>
-		<CancelBtn type="button">Cancel</CancelBtn>
+		<CancelBtn type="button" onClick={onButtonClick}>Cancel</CancelBtn>
 	</AddTransactionsWrapper >
 }

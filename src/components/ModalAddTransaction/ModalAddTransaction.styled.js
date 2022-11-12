@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { keyframes } from "styled-components";
 import Minus from "../../icons/add-transactions/minus.svg";
 import Plus from "../../icons/add-transactions/plus.svg";
 import Calendar from "../../icons/add-transactions/calendar.svg";
@@ -179,12 +180,20 @@ export const SubmitBtn = styled.button`
 	width: 300px;
 	padding: 13px 0;
 	background-color: var(--accent-color);
+	border: 1px solid transparent;
 	border-radius: 20px;
 	color: var(--light-text-color);
 	font-size: 18px;
 	line-height: calc(27 / 18);
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
+	transition: background-color var(--animation), color var(--animation), border-color var(--animation);
+
+	:hover, :focus{
+		background-color: var(--main-bg-color);
+		color: var(--accent-color);
+		border-color: var(--accent-color);
+	}
 `
 export const CancelBtn = styled.button`
 	margin: 20px 0 0;
@@ -198,6 +207,12 @@ export const CancelBtn = styled.button`
 	line-height: calc(27 / 18);
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
+	transition: background-color var(--animation), color var(--animation);
+
+	:hover, :focus{
+		background-color: var(--search-text-color);
+		color: var(--light-text-color);
+	}
 `
 export const SelectorWrapper = styled.div`
 	margin: 40px 0 0;
@@ -213,6 +228,53 @@ export const Selector = styled.div`
 	line-height: calc(27 / 18);
 	color: #BDBDBD;
 `
+const appear = keyframes`
+  0%{
+	opacity: 0;
+	transform: translateY(-60%);
+  }
+  10%{
+	opacity: 0;
+	transform: translateY(-50%);
+  }
+  20%{
+	opacity: 0;
+	transform: translateY(-40%);
+  }
+  30%{
+	opacity: 0;
+	transform: translateY(-30%);
+  }
+  40%{
+	opacity: 0;
+	transform: translateY(-20%);
+  }
+  50%{
+	opacity: 0.3;
+	transform: translateY(-10%);
+  }
+  60%{
+	opacity: 0.5;
+	transform: translateY(-5%);
+  }
+  70%{
+	opacity: 0.7;
+	transform: translateY(0%);
+  }
+  80%{
+	opacity: 0.8;
+	transform: translateY(0%);
+  }
+  90%{
+	opacity: 0.9;
+	transform: translateY(0%);
+  }
+  100%{
+	opacity: 1;
+	transform: translateY(0%);
+  }
+`;
+
 export const SelectList = styled.ul`
 	position: absolute;
 	top: 100%;
@@ -227,11 +289,22 @@ export const SelectList = styled.ul`
 	backdrop-filter: blur(25px);
 	border-radius: 20px;
 	text-align:left;
+	animation-name: ${appear};
+	animation-duration: 300ms;
+	animation-iteration-count: 1;
+	animation-fill-mode: both;
 `
 export const SelectListItem = styled.li`
 	font-family: 'Circe';
 	font-size: 18px;
 	line-height: calc(27 / 18);
 	padding: 8px 0;
+	cursor: pointer;
+	transition: background-color var(--animation), color var(--animation);
+
+	:hover, :focus{
+		background-color: var(--main-bg-color);
+		color: var(--expense-text-color);
+	}
 `
 

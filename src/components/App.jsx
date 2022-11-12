@@ -21,7 +21,7 @@ export const App = () => {
 	}, [dispatch]);
 
 	if (isRefreshing) return <div className="text-center">Refreshing user...</div>;
-	return (
+	return (<>
 		<Suspense fallback={null}>
 			<Routes>
 				<Route path="/" element={<Navigate to="/register" replace />} />
@@ -40,5 +40,6 @@ export const App = () => {
 				<Route path="*" element={<Navigate to="/" replace />} />
 			</Routes>
 		</Suspense>
+	</>
 	);
 };
