@@ -4,28 +4,32 @@ import { createTransaction } from "redux/transactions/operations";
 import { ReactComponent as Arrow } from "../../icons/add-transactions/arrow-selector.svg";
 import { AddTransactionsWrapper, Title, CheckWrapper, Expense, Income, Checkbox, CastomCheckbox, CastomCheckboxWrapp, Form, InputField, Comment, SubmitBtn, CancelBtn, SelectorWrapper, Selector, SelectList, SelectListItem, DateInput, InputWrapper } from "./ModalAddTransaction.styled"
 
+import { validate } from 'indicative/validator'
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ModalAddTransactions = () => {
 	const dispatch = useDispatch();
 
-	const [checked, setChecked] = useState(true);
+	const [checked, setChecked] = useState(false);
 	const [option, setOption] = useState(true);
-
-	const [transactionDate, setTransactionDate] = useState(new Date().toLocaleDateString().replaceAll('/', '.'));
+	const [transactionDate, setTransactionDate] = useState(new Date().toISOString().split('T')[0]);
 	const [type, setType] = useState("INCOME");
 	const [amount, setAmount] = useState("");
 	const [comment, setComment] = useState("");
+	const [categoryId, setCategoryId] = useState("063f1132-ba5d-42b4-951d-44011ca46262");
 	const [selector, setSelector] = useState(false);
 	const [selectedOption, setSelectedOption] = useState("Select a category");
+
 
 	const handleCheckbox = () => {
 		setChecked(!checked)
 		setOption(!option)
 
 		if (checked) {
-			setType("INCOME")
-		} else {
 			setType("EXPENSE")
+		} else {
+			setType("INCOME")
 		}
 	}
 
@@ -46,10 +50,27 @@ export const ModalAddTransactions = () => {
 		setSelector(!selector);
 	}
 
+	const validator = {
+		transactionDate: 'required|string',
+		type: 'string',
+		categoryId: 'required|string',
+		comment: 'string',
+		amount: 'required|integer|above:0',
+	}
+
 	const submitHandler = e => {
 		e.preventDefault();
 
-		dispatch(createTransaction({ transactionDate, type, comment, amount }))
+		const data = { transactionDate, type, categoryId, comment, amount }
+
+		validate(data, validator)
+			.then(data => {
+				dispatch(createTransaction(data));
+			})
+			.catch(error => {
+				console.log("error");
+				toast.error('Error during service worker registration: ');
+			})
 	}
 
 	const selectedOptionHandler = e => {
@@ -60,7 +81,7 @@ export const ModalAddTransactions = () => {
 	}
 
 	const changeDate = e => {
-		setTransactionDate(e.format("DD.MM.YYYY"))
+		setTransactionDate(e ? e.format("YYYY-MM-DD") : (new Date().toISOString().split('T')[0]))
 	}
 
 	return <AddTransactionsWrapper>
@@ -85,7 +106,7 @@ export const ModalAddTransactions = () => {
 			</SelectorWrapper>}
 			<InputWrapper>
 				<InputField value={amount} name="amount" type="text" placeholder="0.00" required onChange={formFieldHandler} />
-				<DateInput onChange={changeDate} value={transactionDate} timeFormat={false} closeOnSelect={true} dateFormat="DD.MM.YY" />
+				<DateInput onChange={changeDate} value={transactionDate} timeFormat={false} closeOnSelect={true} dateFormat="YYYY-MM-DD" />
 			</InputWrapper>
 			<Comment value={comment} name="comment" placeholder="Comment" onChange={formFieldHandler}></Comment>
 			<SubmitBtn type="submit">Add</SubmitBtn>

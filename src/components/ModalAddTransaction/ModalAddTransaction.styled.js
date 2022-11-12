@@ -34,13 +34,13 @@ export const Expense = styled.p`
 	font-weight: 700;
 	font-size: 16px;
 	line-height: calc(24 / 16);
-	color: ${props => props.checkedBox && props.activeOption ? "var(--neutral-color)" : "var(--expense-text-color)"};
+	color: ${props => props.checkedBox && !props.activeOption ? "var(--neutral-color)" : "var(--expense-text-color)"};
 `
 export const Income = styled.p`
 	font-weight: 700;
 	font-size: 16px;
 	line-height: calc(24 / 16);
-	color: ${props => props.checkedBox && props.activeOption ? "var(--incom-text-color)" : "var(--neutral-color)"};
+	color: ${props => props.checkedBox && !props.activeOption ? "var(--incom-text-color)" : "var(--neutral-color)"};
 `
 export const CastomCheckboxWrapp = styled.div`
 	position: relative;
