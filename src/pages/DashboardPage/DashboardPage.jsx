@@ -5,6 +5,8 @@ import { Modal } from "../../components/Modal/Modal";
 import { ModalAddTransactions } from "components/ModalAddTransaction/ModalAddTransaction";
 import { ButtonAddTransactions } from "components/ButtonAddTransactions/ButtonAddTransactions";
 
+import { ModalLogout } from "components/ModalLogout/ModalLogout";
+
 const DashboardPage = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -16,7 +18,8 @@ const DashboardPage = () => {
 		<Currency />
 		{isModalOpen && <Backdrop showModalHandler={handleAddTransactionModal}>
 			<Modal>
-				<ModalAddTransactions showModalHandler={handleAddTransactionModal} />
+				{/* <ModalAddTransactions showModalHandler={handleAddTransactionModal} /> */}
+				<ModalLogout />
 			</Modal>
 		</Backdrop>}
 		<ButtonAddTransactions showModalHandler={handleAddTransactionModal} />
