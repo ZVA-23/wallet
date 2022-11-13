@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const BalanceWrap = styled.div`
+	margin-top: 12px;
   width: 280px;
   height: 80px;
 
@@ -38,7 +39,7 @@ export const BalanceTitle = styled.p`
 export const BalanceTotal = styled.p`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 30px;
   color: var(--main-text-color);
 `;
