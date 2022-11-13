@@ -4,19 +4,30 @@ import { Backdrop } from "../../components/Backdrop/Backdrop";
 import { Modal } from "../../components/Modal/Modal";
 import { ModalAddTransactions } from "components/ModalAddTransaction/ModalAddTransaction";
 import { ButtonAddTransactions } from "components/ButtonAddTransactions/ButtonAddTransactions";
+import { ModalLogout } from "components/ModalLogout/ModalLogout";
 
 const DashboardPage = () => {
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModalTransactionOpen, setIsModalTransactionOpen] = useState(false);
+	const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
 
 	const handleAddTransactionModal = () => {
-		setIsModalOpen(!isModalOpen)
+		setIsModalTransactionOpen(!isModalTransactionOpen)
+	}
+
+	const handleLogoutModal = () => {
+		setIsModalLogoutOpen(!isModalLogoutOpen)
 	}
 
 	return <>
 		<Currency />
-		{isModalOpen && <Backdrop showModalHandler={handleAddTransactionModal}>
+		{isModalTransactionOpen && <Backdrop showModalHandler={handleAddTransactionModal}>
 			<Modal>
-				<ModalAddTransactions showModalHandler={handleAddTransactionModal} />
+				{<ModalAddTransactions showModalHandler={handleAddTransactionModal} />}
+			</Modal>
+		</Backdrop>}
+		{isModalLogoutOpen && <Backdrop showModalHandler={handleLogoutModal}>
+			<Modal>
+				{<ModalLogout showModalHandler={handleLogoutModal} />}
 			</Modal>
 		</Backdrop>}
 		<ButtonAddTransactions showModalHandler={handleAddTransactionModal} />
