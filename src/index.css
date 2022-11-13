@@ -32,6 +32,10 @@ body {
 	margin: 0;
 	font-family: "Circe", sans-serif;
 	color: var(--main-text-color);
+	background-image: url("./images/background/background-desk.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 code {

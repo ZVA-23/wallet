@@ -2,14 +2,16 @@ import styled from 'styled-components';
 
 export const Box = styled.div`
   display: inline-block;
-  max-width: 480px;
-  min-width: 280px;
   width: 100%;
   max-height: 328px;
   overflow-y: auto;
 
-  @media screen and (min-width: 480px) {
-    max-width: 715px;
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    height: 60vh;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 715px;
     height: 60vh;
   }
 `;
@@ -25,8 +27,8 @@ export const Table = styled.table`
   background-image: linear-gradient(
     to right, 
     ${p => p.leftBorder === "INCOME" ?
-      "var(--incom-text-color) 5px, var(--main-bg-color) 5px" : 
-      "var(--expense-text-color) 5px, var(--main-bg-color) 5px"},
+		"var(--incom-text-color) 5px, var(--main-bg-color) 5px" :
+		"var(--expense-text-color) 5px, var(--main-bg-color) 5px"},
       var(--main-bg-color) 100%);
   
   border-radius: 10px;
@@ -35,7 +37,7 @@ export const Table = styled.table`
     margin-top: 8px;
   }
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 768px) {
     background-image: none;
     border-radius: none;
   }
@@ -96,8 +98,8 @@ export const Td = styled.td`
   font-weight: ${p => p.sum && 700};
   text-align: ${p => (p.center && "center") || (p.right && "right")};
   color: ${p => (p.typeTransaction === "INCOME" && p.sum ?
-    "var(--incom-text-color)" :
-    p.sum && "var(--expense-text-color)")};
+		"var(--incom-text-color)" :
+		p.sum && "var(--expense-text-color)")};
 
   /* white-space: nowrap; 
   overflow: hidden; 
