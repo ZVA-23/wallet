@@ -2,10 +2,16 @@ import styled from 'styled-components';
 
 export const Box = styled.div`
   display: inline-block;
-  max-width: 715px;
+  max-width: 480px;
+  min-width: 280px;
   width: 100%;
-  height: 60vh;
+  max-height: 328px;
   overflow-y: auto;
+
+  @media screen and (min-width: 480px) {
+    max-width: 715px;
+    height: 60vh;
+  }
 `;
 
 export const Table = styled.table`
@@ -13,9 +19,26 @@ export const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
 
-  font-weight: 400;
   line-height: 1.5;
+  
   background-color: transparent;
+  background-image: linear-gradient(
+    to right, 
+    ${p => p.leftBorder === "INCOME" ?
+      "var(--incom-text-color) 5px, var(--main-bg-color) 5px" : 
+      "var(--expense-text-color) 5px, var(--main-bg-color) 5px"},
+      var(--main-bg-color) 100%);
+  
+  border-radius: 10px;
+
+  &:not(:first-child) {
+    margin-top: 8px;
+  }
+
+  @media screen and (min-width: 480px) {
+    background-image: none;
+    border-radius: none;
+  }
 `;
 
 export const THead = styled.thead`
@@ -24,9 +47,8 @@ export const THead = styled.thead`
   
   height: 58px;
 
-  font-size: 18px;
-  font-weight: 700;
   text-align: left;
+  background-color: var(--main-bg-color);
 
   & > Tr {
     padding: 16px 20px 15px;
@@ -47,18 +69,24 @@ export const Tr = styled.tr`
 `;
 
 export const Th = styled.th`
-  padding: 14px 20px;;
-  background-color: var(--main-bg-color);
+  padding: 14px 20px;
+
+  font-size: 18px;
+  font-weight: 700;
   letter-spacing: 2px;
-  text-align: ${p => (p.center && "center") || (p.right && "right")};
-  
-  &:first-child {
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-  }
-  &:last-child {
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+  text-align: ${p => (p.left && "left") || (p.center && "center") || (p.right && "right")};
+
+  /* background-color: var(--main-bg-color); */
+
+  @media screen and (min-width: 768px) {
+    &:first-child {
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+    }
+    &:last-child {
+      border-top-right-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
   }
 `;
 
@@ -67,8 +95,8 @@ export const Td = styled.td`
   letter-spacing: 1px;
   font-weight: ${p => p.sum && 700};
   text-align: ${p => (p.center && "center") || (p.right && "right")};
-  color: ${p => (p.type === "INCOME" && p.sum ?
-    "var(--accent-color)" :
+  color: ${p => (p.typeTransaction === "INCOME" && p.sum ?
+    "var(--incom-text-color)" :
     p.sum && "var(--expense-text-color)")};
 
   /* white-space: nowrap; 
