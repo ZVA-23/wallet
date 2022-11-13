@@ -3,15 +3,24 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { register } from 'redux/auth/operations';
-import { ReactComponent as LogoWallet } from '../../images/svg/wallet.svg';
+import logoWallet from '../../images/svg/logoWallet.svg';
+// import lock from '../../icons/lock.svg';
+import { ReactComponent as Lock } from '../../icons/lock.svg';
+
+
+// import {ReactComponent as LogoEmail} from '../../icons/email.svg';
 
 import { toast } from 'react-toastify';
 import {
   InputField,
-  SubmitBtn,
+  // SubmitBtn,
   RegisterFormContainer,
   Form,
   BtnContainer,
+  ActiveBtn,
+  InActiveBtn,
+  Field,
+  InputLock,
 } from './RegistrationForm.styled';
 
 export const RegisterForm = () => {
@@ -19,6 +28,7 @@ export const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
   const dispatch = useDispatch();
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -61,10 +71,10 @@ export const RegisterForm = () => {
   return (
     <RegisterFormContainer>
       <Form onSubmit={handleSubmit}>
-        <LogoWallet width="20" />
-
-        <p>Wallet</p>
-        <InputField
+        <img src={logoWallet} alt="Wallet" width="181" height="40" />
+             
+      
+        <InputField 
           type="email"
           name="email"
           color="primary"
@@ -72,6 +82,7 @@ export const RegisterForm = () => {
           value={email}
           onChange={handleChange}
         />
+       
         <InputField
           type="password"
           name="password"
@@ -94,9 +105,9 @@ export const RegisterForm = () => {
           onChange={handleChange}
         />
         <BtnContainer>
-          <SubmitBtn type="submit">Register</SubmitBtn>
+          <ActiveBtn type="submit">Register</ActiveBtn>
           <Link to="/login">
-            <SubmitBtn variant="outlined">Log in</SubmitBtn>
+            <InActiveBtn variant="outlined">Log in</InActiveBtn>
           </Link>
         </BtnContainer>
       </Form>

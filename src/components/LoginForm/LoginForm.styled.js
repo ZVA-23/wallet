@@ -12,7 +12,20 @@ display: flex;
 flex-direction: column;
 align-items: center;`
 
-export const LoginBtn = styled.button`
+export const InActiveBtn = styled.button`
+	/* margin: 40px 0 0; */
+	width: 300px;
+	padding: 13px 0;
+	background-color: #ffffff;
+	border-radius: 20px;
+    outline: 2px solid #4A56E2;
+    color: #4A56E2;
+	font-size: 18px;
+	line-height: calc(27 / 18);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+`
+export const ActiveBtn = styled.button`
 	/* margin: 40px 0 0; */
 	width: 300px;
 	padding: 13px 0;
@@ -24,6 +37,7 @@ export const LoginBtn = styled.button`
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
 `
+
 export const InputField = styled.input`
 	display: block;
 	padding: 8px 20px;

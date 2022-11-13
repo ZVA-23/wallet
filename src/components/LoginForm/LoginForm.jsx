@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
-// import { Button } from '@mui/material';
-// import TextField from '@mui/material/TextField';
 import { validate } from 'indicative/validator';
 import { toast } from 'react-toastify';
-import { LoginContainer, EnterForm, LoginBtn, InputField } from './LoginForm.styled';
+import { Link } from 'react-router-dom';
+import { LoginContainer, EnterForm, InActiveBtn, InputField, ActiveBtn } from './LoginForm.styled';
 
 
 export const LoginForm = () => {
@@ -72,9 +71,12 @@ export const LoginForm = () => {
         required
       />
 
-      <LoginBtn type="submit" variant="outlined">
+      <ActiveBtn type="submit" variant="outlined">
         Login
-      </LoginBtn>
+      </ActiveBtn>
+      <Link to="/register">
+            <InActiveBtn type="submit" variant="outlined" >Register</InActiveBtn>
+            </Link>
     </EnterForm>
     </LoginContainer>
   );
