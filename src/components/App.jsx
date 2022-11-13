@@ -14,36 +14,36 @@ const RegistrationPage = lazy(() => import('pages/RegistrationPage/RegistrationP
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const { isRefreshing } = useSelector(selectAuth);
+	const dispatch = useDispatch();
+	const { isRefreshing } = useSelector(selectAuth);
 
-  useEffect(() => {
-    dispatch(refreshUser());
-    dispatch(getTransactionCategories());
-  }, [dispatch]);
+	useEffect(() => {
+		dispatch(refreshUser());
+		dispatch(getTransactionCategories());
+	}, [dispatch]);
 
-  if (isRefreshing) return <div className="text-center">Refreshing user...</div>;
-  return (
-    <>
-    <Suspense fallback={null}>
-      <Routes>
-        <Route path="/" element={<Navigate to="/register" replace />} />
-        <Route
-          path="/register"
-          element={<RestrictedRoute redirectTo="/dashboard" component={<RegistrationPage />} />}
-        />
-        <Route
-          path="/login"
-          element={<RestrictedRoute redirectTo="/dashboard" component={<LoginPage />} />}
-        />
-        <Route
-          path="/dashboard"
-          element={<PrivateRoute redirectTo="/login" component={<DashboardPage />} />}
-        />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Suspense>
-    <ToastContainer position="bottom-center" autoClose={2000} />
-    </>
-  );
+	if (isRefreshing) return <div className="text-center">Refreshing user...</div>;
+	return (
+		<>
+			<Suspense fallback={null}>
+				<Routes>
+					<Route path="/" element={<Navigate to="/register" replace />} />
+					<Route
+						path="/register"
+						element={<RestrictedRoute redirectTo="/dashboard" component={<RegistrationPage />} />}
+					/>
+					<Route
+						path="/login"
+						element={<RestrictedRoute redirectTo="/dashboard" component={<LoginPage />} />}
+					/>
+					<Route
+						path="/dashboard"
+						element={<PrivateRoute redirectTo="/login" component={<DashboardPage />} />}
+					/>
+					<Route path="*" element={<Navigate to="/" replace />} />
+				</Routes>
+			</Suspense>
+			<ToastContainer position="bottom-center" autoClose={2000} />
+		</>
+	);
 };

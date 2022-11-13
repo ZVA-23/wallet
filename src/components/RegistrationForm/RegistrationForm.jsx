@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { register } from 'redux/auth/operations';
 import logoWallet from '../../images/svg/logoWallet.svg';
 // import lock from '../../icons/lock.svg';
-import { ReactComponent as Lock } from '../../icons/lock.svg';
+// import { ReactComponent as Lock } from '../../icons/lock.svg';
 
 
 // import {ReactComponent as LogoEmail} from '../../icons/email.svg';
@@ -19,8 +19,7 @@ import {
   BtnContainer,
   ActiveBtn,
   InActiveBtn,
-  Field,
-  InputLock,
+ 
 } from './RegistrationForm.styled';
 
 export const RegisterForm = () => {
