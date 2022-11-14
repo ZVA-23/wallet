@@ -26,6 +26,7 @@ export const HomeTab = () => {
 		const index = transactionsCategories.findIndex(
 			categorie => categorie.id === categoryId
 		);
+		if (index === -1) return '';
 		return transactionsCategories[index].name;
 	};
 
