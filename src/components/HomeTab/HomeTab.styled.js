@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
+	margin-top: 32px;
   display: inline-block;
   width: 100%;
   max-height: 328px;
@@ -13,6 +14,7 @@ export const Box = styled.div`
   @media screen and (min-width: 1280px) {
     width: 715px;
     height: 60vh;
+	 margin-top: 0;
   }
 `;
 

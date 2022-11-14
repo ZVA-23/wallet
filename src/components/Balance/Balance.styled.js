@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BalanceWrap = styled.div`
 	margin-top: 12px;
-  width: 280px;
+  width: 100%;
   height: 80px;
 
   border-radius: 30px;
