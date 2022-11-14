@@ -21,14 +21,12 @@ import {
 import { Navigation } from 'components/Navigation/Navigation';
 import { useLocation } from 'react-router-dom';
 import StatisticsSubPage from 'pages/StatisticsSubPage/StatisticsSubPage';
-import { Loader } from 'components/Loader/Loader';
 import { Header } from 'components/Header/Header';
 
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const location = useLocation();
 	const transactions = useSelector(selectTransactions);
-	const loading = transactions.isLoading;
 
 	const [isModalTransactionOpen, setIsModalTransactionOpen] = useState(false);
 	const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
@@ -53,6 +51,7 @@ const HomePage = () => {
 
 	return (
 		<>
+			<Header />
 			<Main>
 				<Section>
 					<Container>
@@ -64,7 +63,6 @@ const HomePage = () => {
 								</div>
 								<Currency />
 							</NavAndInfoWrapper>
-							{loading && <Loader />}
 							{findCurrentPath() === 'statistics' ? (
 								<StatisticsSubPage />
 							) : transactions.items.length > 0 ? (
