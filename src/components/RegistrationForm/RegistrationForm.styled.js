@@ -1,18 +1,57 @@
 import styled from 'styled-components';
 
-// import { ReactComponent as Lock } from '../../icons/lock.svg';
+export const InputContainer = styled.label`
+  position: relative;
+
+  svg {
+    position: absolute;
+    top: 8px;
+    width: 24px;
+    height: 24px;
+    fill: #e0e0e0;
+    left: 10px;
+  }
+`;
+
+export const ConfirmPasswordLabel = styled.label`
+  position: relative;
+
+  svg {
+    position: absolute;
+    top: 8px;
+    width: 24px;
+    height: 24px;
+    fill: #e0e0e0;
+    left: 10px;
+  }
+
+  :after {
+    opacity: ${props => (props.progressPassword ? '1' : '0')};
+    width: ${props => `${(props.confirmPassword.length / props.password.length) * 100}%`};
+
+    background-color: ${props =>
+      props.password === props.confirmPassword ? 'var(--accent-color)' : 'red'};
+    
+    content: '';
+    position: absolute;
+    height: 4px;
+
+    left: 0px;
+    bottom: -5px;
+  }
+`;
 
 export const InputField = styled.input`
-content: "";
   display: block;
-  padding: 8px 20px;
+  padding: 8px 55px;
   border: none;
   border-bottom: 1px solid #e0e0e0;
   width: 100%;
   outline: none;
-  /* font-weight: 700; */
+
   font-size: 18px;
   line-height: calc(27 / 18);
+  margin-right: 20px;
 
   &:focus {
     border-color: var(--accent-color);
@@ -22,47 +61,37 @@ content: "";
 		width: 190px;
 		text-align: center;
 	} */
-    
-    background-image: url("../icons/lock.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-  
 `;
 
-//  export const Field = styled.div `
-//  position: relative;
-//  `
-
-// export const InputLock = styled.Lock `
-// position: absolute;
-// top: 50%;
-// `
-
 export const InActiveBtn = styled.button`
-	/* margin: 40px 0 0; */
-	width: 300px;
-	padding: 13px 0;
-	background-color: #ffffff;
-	border-radius: 20px;
-    outline: 2px solid #4A56E2;
-    color: #4A56E2;
-	font-size: 18px;
-	line-height: calc(27 / 18);
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
-`
+  width: 300px;
+  padding: 13px 0;
+  background-color: #ffffff;
+  border-radius: 20px;
+  outline: 1px solid #4a56e2;
+  color: #4a56e2;
+  font-size: 18px;
+  line-height: calc(27 / 18);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    outline: none;
+  }
+`;
 export const ActiveBtn = styled.button`
-	/* margin: 40px 0 0; */
-	width: 300px;
-	padding: 13px 0;
-	background-color: var(--accent-color);
-	border-radius: 20px;
-	color: var(--light-text-color);
-	font-size: 18px;
-	line-height: calc(27 / 18);
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
-`
+  width: 300px;
+  padding: 13px 0;
+  background-color: var(--accent-color);
+  border-radius: 20px;
+  color: var(--light-text-color);
+  font-size: 18px;
+  line-height: calc(27 / 18);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+`;
 
 export const RegisterFormContainer = styled.div`
   display: flex;
