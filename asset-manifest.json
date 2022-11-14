@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/wallet/static/css/main.bacc900f.css",
-    "main.js": "/wallet/static/js/main.b6d34cb4.js",
+    "main.js": "/wallet/static/js/main.5ef21759.js",
     "static/css/92.9613db8d.chunk.css": "/wallet/static/css/92.9613db8d.chunk.css",
     "static/js/92.56f41e78.chunk.js": "/wallet/static/js/92.56f41e78.chunk.js",
     "static/js/947.3dbe554e.chunk.js": "/wallet/static/js/947.3dbe554e.chunk.js",
@@ -24,7 +24,7 @@
     "static/media/minus.svg": "/wallet/static/media/minus.c1930871236002c803c7b6a6c0b99024.svg",
     "static/media/arrow-selector.svg": "/wallet/static/media/arrow-selector.77b989b3724c691229812f9ba569ef26.svg",
     "main.bacc900f.css.map": "/wallet/static/css/main.bacc900f.css.map",
-    "main.b6d34cb4.js.map": "/wallet/static/js/main.b6d34cb4.js.map",
+    "main.5ef21759.js.map": "/wallet/static/js/main.5ef21759.js.map",
     "92.9613db8d.chunk.css.map": "/wallet/static/css/92.9613db8d.chunk.css.map",
     "92.56f41e78.chunk.js.map": "/wallet/static/js/92.56f41e78.chunk.js.map",
     "947.3dbe554e.chunk.js.map": "/wallet/static/js/947.3dbe554e.chunk.js.map",
@@ -35,6 +35,6 @@
   },
   "entrypoints": [
     "static/css/main.bacc900f.css",
-    "static/js/main.b6d34cb4.js"
+    "static/js/main.5ef21759.js"
   ]
 }
