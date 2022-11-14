@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { refreshUser } from 'redux/auth/operations';
 import { selectAuth } from 'redux/selectors';
-import { getTransactionCategories } from 'redux/transactions/operations';
+import { getTransactionCategories, getAllTransactions } from 'redux/transactions/operations';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,6 +20,7 @@ export const App = () => {
 	useEffect(() => {
 		dispatch(refreshUser());
 		dispatch(getTransactionCategories());
+		dispatch(getAllTransactions())
 	}, [dispatch]);
 
 	if (isRefreshing) return <div className="text-center">Refreshing user...</div>;

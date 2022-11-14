@@ -10,7 +10,9 @@ import { AddTransactionsWrapper, Title, CheckWrapper, Expense, Income, Checkbox,
 
 export const ModalAddTransactions = ({ showModalHandler }) => {
 	const dispatch = useDispatch();
-	const categories = useSelector(selectTransactions);
+	const transactions = useSelector(selectTransactions);
+	const categories = [...transactions.categories];
+	categories.pop();
 
 	const [checked, setChecked] = useState(false);
 	const [option, setOption] = useState(true);
@@ -81,6 +83,11 @@ export const ModalAddTransactions = ({ showModalHandler }) => {
 			data.amount = "-" + amount;
 		}
 
+		if (type === "EXPENSE" && Number(amount) > transactions.totalBalance) {
+			toast.error("You don'n have enought money");
+			return;
+		}
+
 		validate(data, validator)
 			.then(() => {
 				dispatch(createTransaction(data));
@@ -117,7 +124,7 @@ export const ModalAddTransactions = ({ showModalHandler }) => {
 			{!checked && <SelectorWrapper>
 				<Selector onClick={selectListHandler}>{selectedOption} <Arrow /></Selector>
 				{selector && <SelectList onClick={selectedOptionHandler}>
-					{categories.categories.map(({ id, name }) => <SelectListItem key={id} id={id}>{name}</SelectListItem>)}
+					{categories.map(({ id, name }) => <SelectListItem key={id} id={id}>{name}</SelectListItem>)}
 				</SelectList>}
 			</SelectorWrapper>}
 			<InputWrapper>
