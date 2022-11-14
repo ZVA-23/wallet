@@ -3,6 +3,7 @@ import { Spiner } from './Loader.styled';
 
 export const Loader = () => {
   return (
+    <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center'}} >
     <Spiner>
       <ThreeDots
         height="80"
@@ -14,5 +15,6 @@ export const Loader = () => {
         visible={true}
       />
     </Spiner>
+    </div>
   );
 };
