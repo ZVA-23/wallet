@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import frametablet from '../../images/frame-registration/frametablet.png';
+import framedesctop from '../../images/frame-registration/framedesctop.png';
 
 export const InputContainer = styled.label`
   position: relative;
-
   svg {
     position: absolute;
     top: 8px;
@@ -15,7 +16,6 @@ export const InputContainer = styled.label`
 
 export const ConfirmPasswordLabel = styled.label`
   position: relative;
-
   svg {
     position: absolute;
     top: 8px;
@@ -24,14 +24,14 @@ export const ConfirmPasswordLabel = styled.label`
     fill: #e0e0e0;
     left: 10px;
   }
-
   :after {
     opacity: ${props => (props.progressPassword ? '1' : '0')};
-    width: ${props => `${(props.confirmPassword.length / props.password.length) * 100}%`};
+    width: ${props =>
+      `${(props.confirmPassword.length / props.password.length) * 100}%`};
 
     background-color: ${props =>
       props.password === props.confirmPassword ? 'var(--accent-color)' : 'red'};
-    
+
     content: '';
     position: absolute;
     height: 4px;
@@ -56,11 +56,6 @@ export const InputField = styled.input`
   &:focus {
     border-color: var(--accent-color);
   }
-
-  /* @media (min-width: 768px)  {
-		width: 190px;
-		text-align: center;
-	} */
 `;
 
 export const InActiveBtn = styled.button`
@@ -76,7 +71,7 @@ export const InActiveBtn = styled.button`
   text-transform: uppercase;
 
   &:hover {
-    background-color: var(--accent-color);
+    background-color: var(--search-text-color);
     color: var(--light-text-color);
     outline: none;
   }
@@ -105,6 +100,16 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 400px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding-top: 52px;
+    padding-left: 51vw;
+    padding-right: 7vw;
+  }
 `;
 
 export const BtnContainer = styled.div`
@@ -113,4 +118,33 @@ export const BtnContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0;
+`;
+
+export const CreateRegisterPage = styled.div`
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    display: block;
+    background-repeat: no-repeat;
+
+    background-image: url(${frametablet});
+    width: 273.93px;
+    height: 250px;
+    left: 50%;
+    top: 60px;
+    transform: translateX(-70%);
+  }
+
+  @media screen and (min-width: 1280px) {
+    position: absolute;
+    display: block;
+    background-repeat: no-repeat;
+
+    background-image: url(${framedesctop});
+    background-size: cover;
+    width: 410px;
+    height: 412px;
+    left: 50%;
+    top: 153px;
+    transform: translateX(-110%);
+  }
 `;

@@ -16,7 +16,6 @@ export const EnterForm = styled.form`
 
 export const InputContainer = styled.label`
   position: relative;
-  /* padding-left: 40px; */
 
   svg {
     position: absolute;
@@ -29,7 +28,6 @@ export const InputContainer = styled.label`
 `;
 
 export const InActiveBtn = styled.button`
-  /* margin: 40px 0 0; */
   width: 300px;
   padding: 13px 0;
   background-color: #ffffff;
@@ -48,7 +46,6 @@ export const InActiveBtn = styled.button`
   }
 `;
 export const ActiveBtn = styled.button`
-  /* margin: 40px 0 0; */
   width: 300px;
   padding: 13px 0;
   background-color: var(--accent-color);
@@ -67,7 +64,6 @@ export const InputField = styled.input`
   border-bottom: 1px solid #e0e0e0;
   width: 100%;
   outline: none;
-  /* font-weight: 700; */
   font-size: 18px;
   line-height: calc(27 / 18);
 
@@ -75,8 +71,4 @@ export const InputField = styled.input`
     border-color: var(--accent-color);
   }
 
-  /* @media (min-width: 768px)  {
-		width: 190px;
-		text-align: center;
-	} */
-`;
+ `;
