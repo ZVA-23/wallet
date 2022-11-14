@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const BalanceWrap = styled.div`
-	margin-top: 12px;
+margin-top: 12px;
   width: 100%;
   height: 80px;
 
@@ -10,6 +10,7 @@ export const BalanceWrap = styled.div`
 
   @media (min-width: 768px) {
     width: 336px;
+	 /* margin-top: 28px; */
   }
   @media (min-width: 1280px) {
     width: 395px;
@@ -17,12 +18,9 @@ export const BalanceWrap = styled.div`
 `;
 
 export const BalanceContent = styled.div`
-  padding: 8px 73px 11px 32px;
+  padding: 8px 32px 11px;
   @media (min-width: 768px) {
-    padding: 8px 121px 11px 40px;
-  }
-  @media (min-width: 1280px) {
-    padding: 8px 180px 11px 40px;
+    padding: 8px 40px 11px;
   }
 `;
 
