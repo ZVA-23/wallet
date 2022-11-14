@@ -4,7 +4,9 @@ import { logIn } from '../../redux/auth/operations';
 import { validate } from 'indicative/validator';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
-import { LoginContainer, EnterForm, InActiveBtn, InputField, ActiveBtn } from './LoginForm.styled';
+import { IoMdMail } from 'react-icons/io';
+import { MdLock } from 'react-icons/md';
+import { LoginContainer, EnterForm, InActiveBtn, InputField, ActiveBtn, InputContainer } from './LoginForm.styled';
 
 
 export const LoginForm = () => {
@@ -44,8 +46,10 @@ export const LoginForm = () => {
   .catch(() => toast.error('You have some invalid fields!'))
   };
   return (
-    <LoginContainer>
+    <LoginContainer>     
     <EnterForm onSubmit={handleSubmit}>
+      <InputContainer>
+       <IoMdMail/>
       <InputField
         id="outlined-basic"
         label="Email:"
@@ -57,7 +61,10 @@ export const LoginForm = () => {
         onChange={handleChange}
         required
       />
+    </InputContainer>
 
+    <InputContainer>
+    <MdLock />
       <InputField
         id="outlined-basic2"
         label="Password*"
@@ -70,7 +77,7 @@ export const LoginForm = () => {
         autoComplete="false"
         required
       />
-
+</InputContainer>
       <ActiveBtn type="submit" variant="outlined">
         Login
       </ActiveBtn>

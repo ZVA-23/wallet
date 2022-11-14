@@ -4,22 +4,20 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { register } from 'redux/auth/operations';
 import logoWallet from '../../images/svg/logoWallet.svg';
-// import lock from '../../icons/lock.svg';
-// import { ReactComponent as Lock } from '../../icons/lock.svg';
-
-
-// import {ReactComponent as LogoEmail} from '../../icons/email.svg';
 
 import { toast } from 'react-toastify';
+import { IoMdMail } from 'react-icons/io';
+import { MdLock } from 'react-icons/md';
+import { IoPersonSharp } from 'react-icons/io5';
 import {
   InputField,
-  // SubmitBtn,
   RegisterFormContainer,
   Form,
   BtnContainer,
   ActiveBtn,
   InActiveBtn,
- 
+  InputContainer,
+  ConfirmPasswordLabel,
 } from './RegistrationForm.styled';
 
 export const RegisterForm = () => {
@@ -27,6 +25,7 @@ export const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [text, setText] = useState(false);
 
   const dispatch = useDispatch();
   const handleChange = ({ target: { name, value } }) => {
@@ -41,6 +40,7 @@ export const RegisterForm = () => {
         setPassword(value);
         break;
       case 'confirmPassword':
+        setText(true);
         setConfirmPassword(value);
         break;
       default:
@@ -71,38 +71,55 @@ export const RegisterForm = () => {
     <RegisterFormContainer>
       <Form onSubmit={handleSubmit}>
         <img src={logoWallet} alt="Wallet" width="181" height="40" />
-             
-      
-        <InputField 
-          type="email"
-          name="email"
-          color="primary"
-          placeholder="E-mail"
-          value={email}
-          onChange={handleChange}
-        />
-       
-        <InputField
-          type="password"
-          name="password"
-          value={password}
-          placeholder="Password"
-          onChange={handleChange}
-        />
-        <InputField
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm password"
-          value={confirmPassword}
-          onChange={handleChange}
-        />
-        <InputField
-          type="text"
-          name="username"
-          placeholder="First name"
-          value={username}
-          onChange={handleChange}
-        />
+
+        <InputContainer>
+          <IoMdMail />
+          <InputField
+            type="email"
+            name="email"
+            color="primary"
+            placeholder="E-mail"
+            value={email}
+            onChange={handleChange}
+          />
+        </InputContainer>
+
+        <InputContainer>
+          <MdLock />
+          <InputField
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            onChange={handleChange}
+          />
+        </InputContainer>
+
+        <ConfirmPasswordLabel
+          progressPassword={text}
+          password={password}
+          confirmPassword={confirmPassword}
+        >
+          <MdLock />
+          <InputField
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={handleChange}
+          />
+        </ConfirmPasswordLabel>
+
+        <InputContainer>
+          <IoPersonSharp />
+          <InputField
+            type="text"
+            name="username"
+            placeholder="First name"
+            value={username}
+            onChange={handleChange}
+          />
+        </InputContainer>
         <BtnContainer>
           <ActiveBtn type="submit">Register</ActiveBtn>
           <Link to="/login">
