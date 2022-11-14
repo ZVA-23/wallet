@@ -15,7 +15,7 @@ export const Balance = () => {
 		<BalanceWrap>
 			<BalanceContent>
 				<BalanceTitle>Your balance</BalanceTitle>
-				<BalanceTotal>₴ {transactions.totalBalance}</BalanceTotal>
+				<BalanceTotal>$ {transactions.totalBalance.toFixed(2)}</BalanceTotal>
 			</BalanceContent>
 		</BalanceWrap>
 	);

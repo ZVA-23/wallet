@@ -41,7 +41,7 @@ export const logOut = createAsyncThunk(
     'auth/logout',
     async (_, thunkApi) => {
         try {
-            await axios.delete('/users/log-out');
+            await axios.delete('/auth/sign-out');
             resetAuthHeader();
         } catch (e) {
             return thunkApi.rejectWithValue(e.message)

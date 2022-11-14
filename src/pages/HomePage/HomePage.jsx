@@ -22,6 +22,7 @@ import { Navigation } from 'components/Navigation/Navigation';
 import { useLocation } from 'react-router-dom';
 import StatisticsSubPage from 'pages/StatisticsSubPage/StatisticsSubPage';
 import { Loader } from 'components/Loader/Loader';
+import { Header } from 'components/Header/Header';
 
 const HomePage = () => {
 	const dispatch = useDispatch();
