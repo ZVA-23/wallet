@@ -4,8 +4,6 @@ import { selectTransactions } from 'redux/selectors';
 import { Main } from 'components/Main/Main';
 import { Section } from 'components/Section/Section';
 import { Container } from 'components/Container/Container';
-import { Balance } from 'components/Balance/Balance';
-import { Currency } from 'components/Currency/Currency';
 import { Info } from 'Info/Info';
 import { HomeTab } from 'components/HomeTab/HomeTab';
 import { Backdrop } from '../../components/Backdrop/Backdrop';
@@ -13,15 +11,16 @@ import { Modal } from '../../components/Modal/Modal';
 import { ModalAddTransactions } from 'components/ModalAddTransaction/ModalAddTransaction';
 import { ButtonAddTransactions } from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import { ModalLogout } from 'components/ModalLogout/ModalLogout';
-import { NavAndInfoWrapper, HomePageWrapper } from './HomePage.styled';
+import { HomePageWrapper } from './HomePage.styled';
 import {
 	getAllTransactions,
 	getTransactionCategories,
 } from 'redux/transactions/operations';
-import { Navigation } from 'components/Navigation/Navigation';
 import { useLocation } from 'react-router-dom';
 import StatisticsSubPage from 'pages/StatisticsSubPage/StatisticsSubPage';
 import { Header } from 'components/Header/Header';
+import { CurrencySubPage } from 'pages/CurrencySubPage/CurrencySubPage';
+import { UserPanel } from 'components/UserPanel/UserPanel';
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -36,9 +35,12 @@ const HomePage = () => {
 		dispatch(getAllTransactions());
 	}, [dispatch]);
 
-	const findCurrentPath = () => {
+	const renderSubPage = () => {
 		const array = location.pathname.split('/');
-		return array[array.length - 1];
+		const path = array[array.length - 1];
+		if (path === 'statistics') return <StatisticsSubPage />;
+		if (path === 'currency') return <CurrencySubPage />;
+		return;
 	};
 
 	const handleAddTransactionModal = () => {
@@ -49,24 +51,14 @@ const HomePage = () => {
 		setIsModalLogoutOpen(!isModalLogoutOpen);
 	};
 
-
 	return (
 		<>
-			<Header />
 			<Main location={location.pathname}>
 				<Section>
 					<Container>
 						<HomePageWrapper>
-							<NavAndInfoWrapper>
-								<div>
-									<Navigation />
-									<Balance />
-								</div>
-								<Currency />
-							</NavAndInfoWrapper>
-							{findCurrentPath() === 'statistics' ? (
-								<StatisticsSubPage />
-							) : transactions.items.length > 0 ? (
+							{renderSubPage()}
+							{transactions.items.length > 0 ? (
 								<HomeTab />
 							) : (
 								<Info text="Here will be your transactions." />

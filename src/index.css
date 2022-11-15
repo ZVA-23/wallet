@@ -78,3 +78,14 @@ button {
 	font-family: inherit;
 	cursor: pointer;
 }
+
+.wrapper {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+	.wrapper {
+		grid-template-columns: 1fr 1fr;
+	}
+}
