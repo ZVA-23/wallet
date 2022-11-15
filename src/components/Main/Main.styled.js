@@ -9,7 +9,7 @@ export const MainTag = styled.main`
 		if (p.location === "/register") {
 			return "var(--main-bg-color)"
 		}
-		if (p.location === "/home") {
+		if (p.location === "/home" || p.location === "/statistics") {
 			return "#E7EAF2"
 		}
 	}};
@@ -20,7 +20,7 @@ export const MainTag = styled.main`
 		if (p.location === "/register") {
 			return `url(${TabletBG})`
 		}
-		if (p.location === "/home") {
+		if (p.location === "/home" || p.location === "/statistics") {
 			return `url(${MainBgTablet})`
 		}
 	}} ;
@@ -34,7 +34,7 @@ export const MainTag = styled.main`
 		if (p.location === "/register") {
 			return `url(${LoginBG})`
 		}
-		if (p.location === "/home") {
+		if (p.location === "/home" || p.location === "/statistics") {
 			return `url(${MainBgDesk})`
 		}
 	}} ;
@@ -45,7 +45,7 @@ export const MainTag = styled.main`
 		if (p.location === "/register") {
 			return "100vh"
 		}
-		if (p.location === "/home") {
+		if (p.location === "/home" || p.location === "/statistics") {
 			return "auto"
 		}
 	}} ;

@@ -14,21 +14,33 @@
 // import { ButtonAddTransactions } from 'components/ButtonAddTransactions/ButtonAddTransactions';
 // import { ModalLogout } from 'components/ModalLogout/ModalLogout';
 import { DiagramTab } from 'components/DiagramTab/DiagramTab';
-// import { NavAndInfoWrapper, HomePageWrapper } from './StatissticsSubPage.styled';
+import { StatisticsWrapper } from './StatisticsSubPage.styled';
 // import {
 //   getAllTransactions,
 //   getTransactionCategories,
 // } from 'redux/transactions/operations';
 // import { Navigation } from 'components/Navigation/Navigation';
-import { useLocation } from 'react-router-dom';
 // import { Header } from 'components/Header/Header';
+import { useLocation } from 'react-router-dom';
+import { UserPanel } from '../../components/UserPanel/UserPanel';
+import { Main } from 'components/Main/Main';
+import { Section } from 'components/Section/Section';
+import { Container } from 'components/Container/Container';
 
 const StatisticsSubPage = () => {
+	const location = useLocation();
 
 	return (
-		<>
-			<DiagramTab />
-		</>
+		<Main location={location.pathname}>
+			<Section>
+				<Container>
+					<StatisticsWrapper>
+						<UserPanel />
+						<DiagramTab />
+					</StatisticsWrapper>
+				</Container>
+			</Section>
+		</Main>
 	)
 }
 
