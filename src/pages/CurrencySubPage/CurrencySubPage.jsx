@@ -1,7 +1,7 @@
-import { Currency } from "components/Currency/Currency"
+import { Currency } from 'components/Currency/Currency';
+import { useMedia } from 'react-use';
 
 export const CurrencySubPage = () => {
-  return (
-    <Currency />
-  )
-}
+  const isMobile = useMedia('(max-width: 768px)');
+  return <>{isMobile && <Currency />}</>;
+};
