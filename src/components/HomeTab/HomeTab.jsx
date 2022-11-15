@@ -3,8 +3,7 @@ import { useMedia } from 'react-use';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTransactions } from 'redux/selectors';
 import { getAllTransactions } from 'redux/transactions/operations';
-import { Box, Table, THead, TBody, Tr, Th, Td } from './HomeTab.styled';
-// import { Container } from 'components/Container/Container';
+import { Box, Table, THead, TBody, Tr, Th, Td, NoTransactions } from './HomeTab.styled';
 
 export const HomeTab = () => {
 	const dispatch = useDispatch();
@@ -38,9 +37,8 @@ export const HomeTab = () => {
 		<>
 			{isMobile ? (
 				<>
-					{/* <Container> */}
 					<Box>
-						{showTransactions.length > 0 && (
+						{showTransactions.length > 0 ?
 							<>
 								{showTransactions.map(
 									({
@@ -52,7 +50,7 @@ export const HomeTab = () => {
 										amount,
 										balanceAfter,
 									}) => (
-										<Table leftBorder={type}>
+										<Table type>
 											<Tr key={`${id}Data`}>
 												<Th left>Date</Th>
 												<Td right>
@@ -90,55 +88,64 @@ export const HomeTab = () => {
 										</Table>
 									)
 								)}
-							</>
-						)}
+							</> : (
+								<NoTransactions>No transactions</NoTransactions>
+							)}
 					</Box>
-					{/* </Container> */}
 				</>
 			) : (
 				<Box>
-					{showTransactions.length > 0 && (
-						<Table>
-							<THead>
-								<Tr>
-									<Th>Date</Th>
-									<Th center>Type</Th>
-									<Th>Category</Th>
-									<Th>Comment</Th>
-									<Th right>Sum</Th>
-									<Th right>Balance</Th>
-								</Tr>
-							</THead>
-							<TBody>
-								{showTransactions.map(
-									({
-										id,
-										transactionDate,
-										type,
-										categoryId,
-										comment,
-										amount,
-										balanceAfter,
-									}) => (
-										<Tr key={id}>
-											<Td>{transactionDate.split('-').join('.').slice(2)}</Td>
-											<Td center>{type === 'INCOME' ? '+' : '-'}</Td>
-											<Td>{getCategoriesNamme(categoryId)}</Td>
-											<Td>
-												{comment.length > 23
-													? `${comment.substring(0, 23)}...`
-													: comment}
-											</Td>
-											<Td right sum type={type}>
-												{amount > 0 ? amount.toFixed(2) : (-amount).toFixed(2)}
-											</Td>
-											<Td right>{balanceAfter.toFixed(2)}</Td>
-										</Tr>
-									)
-								)}
-							</TBody>
-						</Table>
-					)}
+					<Table>
+						<THead>
+							<Tr>
+								<Th>Date</Th>
+								<Th center>Type</Th>
+								<Th>Category</Th>
+								<Th>Comment</Th>
+								<Th right>Sum</Th>
+								<Th right>Balance</Th>
+							</Tr>
+						</THead>
+						{showTransactions.length > 0 ? (
+							<>
+								<TBody>
+									{showTransactions.map(
+										({
+											id,
+											transactionDate,
+											type,
+											categoryId,
+											comment,
+											amount,
+											balanceAfter,
+										}) => (
+											<Tr key={id}>
+												<Td>{transactionDate.split('-').join('.').slice(2)}</Td>
+												<Td center>{type === 'INCOME' ? '+' : '-'}</Td>
+												<Td>{getCategoriesNamme(categoryId)}</Td>
+												<Td>
+													{comment.length > 23
+														? `${comment.substring(0, 23)}...`
+														: comment}
+												</Td>
+												<Td right sum typeTransaction={type}>
+													{amount > 0 ? amount.toFixed(2) : (-amount).toFixed(2)}
+												</Td>
+												<Td right>{balanceAfter.toFixed(2)}</Td>
+											</Tr>
+										))}
+								</TBody>
+							</>
+						) : (
+							<Tr>
+								<Td colspan="5">
+									<NoTransactions>
+										No transactions
+									</NoTransactions>
+								</Td>
+							</Tr>
+						)}
+					</Table>
 				</Box>
 			)}
 		</>
