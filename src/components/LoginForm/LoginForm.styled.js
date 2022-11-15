@@ -40,7 +40,7 @@ export const InActiveBtn = styled.button`
   text-transform: uppercase;
 
   &:hover {
-    background-color: var(--accent-color);
+    background-color: var(--search-text-color);
     color: var(--light-text-color);
     outline: none;
   }
@@ -55,6 +55,11 @@ export const ActiveBtn = styled.button`
   line-height: calc(27 / 18);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+
+  &:hover {
+    background-color: var(--search-text-color);
+    color: var(--light-text-color);
+  }
 `;
 
 export const InputField = styled.input`

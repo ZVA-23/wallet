@@ -53,6 +53,7 @@ export const InputField = styled.input`
   line-height: calc(27 / 18);
   margin-right: 20px;
 
+
   &:focus {
     border-color: var(--accent-color);
   }
@@ -86,6 +87,12 @@ export const ActiveBtn = styled.button`
   line-height: calc(27 / 18);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+
+  &:hover {
+    background-color: var(--search-text-color);
+    color: var(--light-text-color);
+  }
+
 `;
 
 export const RegisterFormContainer = styled.div`
