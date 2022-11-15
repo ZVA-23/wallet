@@ -46,3 +46,12 @@ export const LogOutWrapper = styled.div`
 		gap: 24px;
 	}
 `
+
+export const Bg = styled.div`
+position: absolute;
+left: 0;
+right 0;
+z-index: -1;
+height: 88px;
+background-color: #fff;
+`

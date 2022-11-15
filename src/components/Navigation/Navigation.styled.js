@@ -4,6 +4,7 @@ import styled from "styled-components"
 export const Ul = styled.ul`
     display: flex;
     flex-direction: column;
+    align-items: start;
 `
 
 export const StyledNavLink = styled(NavLink)`
@@ -15,4 +16,7 @@ export const StyledNavLink = styled(NavLink)`
     font-size: 18px;
     font-weight: 400;
 	 line-height: calc(27 / 18);
+     &.active {
+        font-weight: 700;
+     }
 `

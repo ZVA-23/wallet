@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Layout } from './Layout';
 import { HomeTab } from './HomeTab/HomeTab';
 import { Loader } from './Loader/Loader';
+import { CurrencySubPage } from 'pages/CurrencySubPage/CurrencySubPage';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -38,40 +39,48 @@ export const App = () => {
             element={
               <PrivateRoute redirectTo="/login" component={<HomePage />} />
             }
-          >
-            <Route
-              index
-              element={
-                <PrivateRoute redirectTo="/login" component={<HomeTab />} />
-              }
-            />
-            <Route
-              path="statistics"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<StatisticsSubPage />}
-                />
-              }
-            />
-          </Route>
+          />
           <Route
-            path="register"
+            index
             element={
-              <RestrictedRoute
-                redirectTo="/home"
-                component={<RegistrationPage />}
+              <PrivateRoute redirectTo="/login" component={<HomeTab />} />
+            }
+          />
+          <Route
+            path="statistics"
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={<StatisticsSubPage />}
               />
             }
           />
           <Route
-            path="login"
+            path="currency"
             element={
-              <RestrictedRoute redirectTo="/home" component={<LoginPage />} />
+              <PrivateRoute
+                redirectTo="/login"
+                component={<CurrencySubPage />}
+              />
             }
           />
-          <Route path="*" element={<Navigate to="home" replace />} />
         </Route>
+        <Route
+          path="register"
+          element={
+            <RestrictedRoute
+              redirectTo="/home"
+              component={<RegistrationPage />}
+            />
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <RestrictedRoute redirectTo="/home" component={<LoginPage />} />
+          }
+        />
+        <Route path="*" element={<Navigate to="home" replace />} />
       </Routes>
     </>
   );
