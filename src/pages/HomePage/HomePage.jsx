@@ -49,10 +49,11 @@ const HomePage = () => {
 		setIsModalLogoutOpen(!isModalLogoutOpen);
 	};
 
+
 	return (
 		<>
 			<Header />
-			<Main>
+			<Main location={location.pathname}>
 				<Section>
 					<Container>
 						<HomePageWrapper>
