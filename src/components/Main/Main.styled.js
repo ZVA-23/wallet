@@ -6,7 +6,7 @@ import MainBgDesk from "../../images/background/background-desk.png"
 
 export const MainTag = styled.main`
 	background: ${p => {
-		if (p.location === "/register") {
+		if (p.location === "/register" || p.location === "/login") {
 			return "var(--main-bg-color)"
 		}
 		if (p.location === "/home" || p.location === "/statistics") {
@@ -17,7 +17,7 @@ export const MainTag = styled.main`
 	
 	@media (min-width: 768px) {
 		background: ${p => {
-		if (p.location === "/register") {
+		if (p.location === "/register" || p.location === "/login") {
 			return `url(${TabletBG})`
 		}
 		if (p.location === "/home" || p.location === "/statistics") {
@@ -31,7 +31,7 @@ export const MainTag = styled.main`
 
   @media (min-width: 1280px) {
 	background: ${p => {
-		if (p.location === "/register") {
+		if (p.location === "/register" || p.location === "/login") {
 			return `url(${LoginBG})`
 		}
 		if (p.location === "/home" || p.location === "/statistics") {

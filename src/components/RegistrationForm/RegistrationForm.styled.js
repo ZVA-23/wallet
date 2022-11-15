@@ -1,13 +1,34 @@
 import styled from 'styled-components';
 
+export const FormWrapper = styled.div`
+	padding: 32px 0;
+	background-color: var(--main-bg-color);
+
+	@media screen and (min-width: 768px) {
+    padding: 40px 65px 66px;
+	 border-radius: 20px;
+	 width: 533px;
+  }
+`
 export const Logo = styled.img`
-	margin-bottom: 60px;
+	margin: 0 auto 60px;
 `
 export const InputContainer = styled.label`
   position: relative;
+  display: block;
+  margin-top: 40px;
+
+  :first-child{
+	margin-top: 0;
+  }
+
+  :last-child{
+	margin-top: 32px;
+  }
+  
   svg {
     position: absolute;
-    top: 8px;
+    top: 0;
     width: 24px;
     height: 24px;
     fill: #e0e0e0;
@@ -17,9 +38,11 @@ export const InputContainer = styled.label`
 
 export const ConfirmPasswordLabel = styled.label`
   position: relative;
+  display: block;
+  margin-top: 40px;
   svg {
     position: absolute;
-    top: 8px;
+    top: 0;
     width: 24px;
     height: 24px;
     fill: #e0e0e0;
@@ -44,7 +67,7 @@ export const ConfirmPasswordLabel = styled.label`
 
 export const InputField = styled.input`
   display: block;
-  padding: 8px 55px;
+  padding: 0px 55px 8px;
   border: none;
   border-bottom: 1px solid #e0e0e0;
   width: 100%;
@@ -52,7 +75,6 @@ export const InputField = styled.input`
 
   font-size: 18px;
   line-height: calc(27 / 18);
-  margin-right: 20px;
 
   &:focus {
     border-color: var(--accent-color);
@@ -70,12 +92,13 @@ export const InActiveBtn = styled.button`
   line-height: calc(27 / 18);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  transition: background-color var(--animation), color var(--animation);
+  margin-top: 20px;
 
-  &:hover {
-    background-color: var(--search-text-color);
-    color: var(--light-text-color);
-    outline: none;
-  }
+	:hover, :focus{
+		background-color: var(--search-text-color);
+		color: var(--light-text-color);
+	}
 `;
 export const ActiveBtn = styled.button`
   width: 300px;
@@ -87,31 +110,21 @@ export const ActiveBtn = styled.button`
   line-height: calc(27 / 18);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: background-color var(--animation), color var(--animation), border-color var(--animation);
+
+	:hover, :focus{
+		background-color: var(--main-bg-color);
+		color: var(--accent-color);
+		border-color: var(--accent-color);
+	}
 `;
 
 export const Form = styled.form`
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--main-bg-color);
-
-  @media screen and (min-width: 768px) {
-    padding: 40px 65px 66px;
-	 border-radius: 20px;
-	 width: 533px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    
-  }
 `;
 
 export const BtnContainer = styled.div`
-  gap: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
+	 margin-top: 40px;
+	 text-align: center;
 `;
 
