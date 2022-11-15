@@ -18,9 +18,8 @@ import {
 } from 'redux/transactions/operations';
 import { useLocation } from 'react-router-dom';
 import StatisticsSubPage from 'pages/StatisticsSubPage/StatisticsSubPage';
-import { Header } from 'components/Header/Header';
 import { CurrencySubPage } from 'pages/CurrencySubPage/CurrencySubPage';
-import { UserPanel } from 'components/UserPanel/UserPanel';
+
 
 const HomePage = () => {
 	const dispatch = useDispatch();

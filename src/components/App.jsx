@@ -64,23 +64,23 @@ export const App = () => {
               />
             }
           />
+          <Route
+            path="register"
+            element={
+              <RestrictedRoute
+                redirectTo="/home"
+                component={<RegistrationPage />}
+              />
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute redirectTo="/home" component={<LoginPage />} />
+            }
+          />
+          <Route path="*" element={<Navigate to="home" replace />} />
         </Route>
-        <Route
-          path="register"
-          element={
-            <RestrictedRoute
-              redirectTo="/home"
-              component={<RegistrationPage />}
-            />
-          }
-        />
-        <Route
-          path="login"
-          element={
-            <RestrictedRoute redirectTo="/home" component={<LoginPage />} />
-          }
-        />
-        <Route path="*" element={<Navigate to="home" replace />} />
       </Routes>
     </>
   );
