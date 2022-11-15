@@ -46,7 +46,7 @@ export const MainTag = styled.main`
 			return "100vh"
 		}
 		if (p.location === "/home" || p.location === "/statistics") {
-			return "auto"
+			return "calc(100vh - 88px)"
 		}
 	}} ;
   }

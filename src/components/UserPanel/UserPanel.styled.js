@@ -7,11 +7,21 @@ export const NavAndInfoWrapper = styled.div`
   }
 
   @media (min-width: 1280px) {
+	position: relative;
     flex-direction: column;
-	 padding-right: 69px;
 	 gap: 30px;
-	 border-right: 1px solid #E7E5F2;
-	box-shadow: 1px 0px 0px rgba(255, 255, 255, 0.6);
+
+	 position: relative;
+	::after{
+		content: "";
+		position: absolute;
+		top: -49px;
+		right: -69px;
+		height: calc(100vh - 88px);
+		width: 1px;
+		background-color: #E7E5F2;
+		box-shadow: 1px 0px 0px rgba(255, 255, 255, 0.6);
+	}
   }
 
 `

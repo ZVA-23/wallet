@@ -15,5 +15,6 @@ export const SectionTag = styled.section`
 			return "49px 0 55px"
 		}
 	}};
+	
   }
 `
