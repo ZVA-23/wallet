@@ -6,23 +6,23 @@ import { selectAuth } from 'redux/selectors';
 import { Container } from './Container/Container';
 import { Header } from './Header/Header';
 import { UserPanel } from './UserPanel/UserPanel';
+// import {Main} from "./Main/Main"
 
 export const Layout = () => {
-  const { isLoggedIn } = useSelector(selectAuth);
-  return (
-    <>
-      {isLoggedIn && <Header />}
-      <Container>
-        <div style={{ minHeight: '100vh' }}>
-          <div className="wrapper">
-            {isLoggedIn && <UserPanel />}
-            <Suspense fallback={null}>
-              <Outlet />
-            </Suspense>
-          </div>
-        </div>
-        <ToastContainer position="bottom-center" autoClose={2000} />
-      </Container>
-    </>
-  );
+	const { isLoggedIn } = useSelector(selectAuth);
+	return (<>
+		{/* <Container> */}
+		{/* <div style={{ minHeight: '100vh' }}> */}
+		{isLoggedIn && <Header />}
+		{/* <div className="wrapper"> */}
+		{isLoggedIn && <UserPanel />}
+		<Suspense fallback={null}>
+			<Outlet />
+		</Suspense>
+		{/* </div> */}
+		{/* </div> */}
+		<ToastContainer position="bottom-center" autoClose={2000} />
+		{/* </Container> */}
+	</>
+	);
 };

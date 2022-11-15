@@ -13,81 +13,81 @@ import { ButtonAddTransactions } from 'components/ButtonAddTransactions/ButtonAd
 import { ModalLogout } from 'components/ModalLogout/ModalLogout';
 import { HomePageWrapper } from './HomePage.styled';
 import {
-  getAllTransactions,
-  getTransactionCategories,
-  getTransactionsSummary,
+	getAllTransactions,
+	getTransactionCategories,
+	getTransactionsSummary,
 } from 'redux/transactions/operations';
 import { useLocation } from 'react-router-dom';
 import StatisticsSubPage from 'pages/StatisticsSubPage/StatisticsSubPage';
 import { CurrencySubPage } from 'pages/CurrencySubPage/CurrencySubPage';
 
 const HomePage = () => {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const transactions = useSelector(selectTransactions);
+	const dispatch = useDispatch();
+	const location = useLocation();
+	const transactions = useSelector(selectTransactions);
 
-  const [isModalTransactionOpen, setIsModalTransactionOpen] = useState(false);
-  const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
+	const [isModalTransactionOpen, setIsModalTransactionOpen] = useState(false);
+	const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
 
-  useEffect(() => {
-    dispatch(getTransactionCategories());
-    dispatch(getAllTransactions());
-    dispatch(getTransactionsSummary({month: 11, year: 2022}))
-  }, [dispatch]);
+	useEffect(() => {
+		dispatch(getTransactionCategories());
+		dispatch(getAllTransactions());
+		dispatch(getTransactionsSummary({ month: 11, year: 2022 }))
+	}, [dispatch]);
 
-  const renderSubPage = () => {
-    const array = location.pathname.split('/');
-    const path = array[array.length - 1];
-    if (path === 'statistics') return <StatisticsSubPage />;
-    if (path === 'currency') return <CurrencySubPage />;
-    return;
-  };
+	const renderSubPage = () => {
+		const array = location.pathname.split('/');
+		const path = array[array.length - 1];
+		if (path === 'statistics') return <StatisticsSubPage />;
+		if (path === 'currency') return <CurrencySubPage />;
+		return;
+	};
 
-  const handleAddTransactionModal = () => {
-    setIsModalTransactionOpen(!isModalTransactionOpen);
-  };
+	const handleAddTransactionModal = () => {
+		setIsModalTransactionOpen(!isModalTransactionOpen);
+	};
 
-  const handleLogoutModal = () => {
-    setIsModalLogoutOpen(!isModalLogoutOpen);
-  };
+	const handleLogoutModal = () => {
+		setIsModalLogoutOpen(!isModalLogoutOpen);
+	};
 
-  return (
-    <>
-      <Main>
-        <Section>
-          <Container>
-            <HomePageWrapper>
-              {renderSubPage()}
-              {transactions.items.length > 0 ? (
-                <HomeTab />
-              ) : (
-                <Info text="Here will be your transactions." />
-              )}
-            </HomePageWrapper>
-          </Container>
-        </Section>
-        {isModalTransactionOpen && (
-          <Backdrop showModalHandler={handleAddTransactionModal}>
-            <Modal>
-              {
-                <ModalAddTransactions
-                  showModalHandler={handleAddTransactionModal}
-                />
-              }
-            </Modal>
-          </Backdrop>
-        )}
-        {isModalLogoutOpen && (
-          <Backdrop showModalHandler={handleLogoutModal}>
-            <Modal>
-              {<ModalLogout showModalHandler={handleLogoutModal} />}
-            </Modal>
-          </Backdrop>
-        )}
-        <ButtonAddTransactions showModalHandler={handleAddTransactionModal} />
-      </Main>
-    </>
-  );
+	return (
+		<>
+			<Main location={location.pathname}>
+				<Section>
+					<Container>
+						<HomePageWrapper>
+							{renderSubPage()}
+							{transactions.items.length > 0 ? (
+								<HomeTab />
+							) : (
+								<Info text="Here will be your transactions." />
+							)}
+						</HomePageWrapper>
+					</Container>
+				</Section>
+				{isModalTransactionOpen && (
+					<Backdrop showModalHandler={handleAddTransactionModal}>
+						<Modal>
+							{
+								<ModalAddTransactions
+									showModalHandler={handleAddTransactionModal}
+								/>
+							}
+						</Modal>
+					</Backdrop>
+				)}
+				{isModalLogoutOpen && (
+					<Backdrop showModalHandler={handleLogoutModal}>
+						<Modal>
+							{<ModalLogout showModalHandler={handleLogoutModal} />}
+						</Modal>
+					</Backdrop>
+				)}
+				<ButtonAddTransactions showModalHandler={handleAddTransactionModal} />
+			</Main>
+		</>
+	);
 };
 
 export default HomePage;
