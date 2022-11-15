@@ -16,7 +16,7 @@ export const NavAndInfoWrapper = styled.div`
 
 `
 
-export const HomePageWrapper = styled.div`
+export const StatisticsWrapper = styled.div`
 	@media (min-width: 1280px) {
    display: flex;
 	justify-content: space-between;
