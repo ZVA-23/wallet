@@ -26,15 +26,18 @@ export const Table = styled.table`
 
   line-height: 1.5;
   
+  /* border-left: 5px solid transparent;
+  border-left-color: ${p => p.leftBorder === "INCOME" ?
+    "var(--incom-text-color)" : "var(--expense-text-color)"}; */
   background-color: transparent;
   background-image: linear-gradient(
     to right, 
-    ${p => p.leftBorder === "INCOME" ?
-		"var(--incom-text-color) 5px, var(--main-bg-color) 5px" :
-		"var(--expense-text-color) 5px, var(--main-bg-color) 5px"},
-      var(--main-bg-color) 100%);
+    ${p => p.type === "INCOME" ?
+    "var(--incom-text-color) 5px, var(--main-bg-color) 5px" :
+    "var(--expense-text-color) 5px, var(--main-bg-color) 5px"},
+    var(--main-bg-color) 100%);
+    border-radius: 10px;
   
-  border-radius: 10px;
 
   &:not(:first-child) {
     margin-top: 8px;
@@ -66,6 +69,8 @@ export const TBody = styled.tbody`
 export const Tr = styled.tr`
   padding: 0 20px;
   height: 54px;
+
+  text-align: center;
 
   &:not(:last-child) {
     border-bottom: 1px solid #DCDCDF;
@@ -101,10 +106,15 @@ export const Td = styled.td`
   font-weight: ${p => p.sum && 700};
   text-align: ${p => (p.center && "center") || (p.right && "right")};
   color: ${p => (p.typeTransaction === "INCOME" && p.sum ?
-		"var(--incom-text-color)" :
-		p.sum && "var(--expense-text-color)")};
+    "var(--incom-text-color)" :
+    p.sum && "var(--expense-text-color)")};
 
   /* white-space: nowrap; 
   overflow: hidden; 
   text-overflow: ellipsis; */
+`;
+
+export const NoTransactions = styled.p`
+  font-style: italic;
+  text-align: center;
 `;
