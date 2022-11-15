@@ -10,17 +10,19 @@ import { UserPanel } from './UserPanel/UserPanel';
 export const Layout = () => {
   const { isLoggedIn } = useSelector(selectAuth);
   return (
-    <Container>
-      <div style={{ minHeight: '100vh' }}>
-        {isLoggedIn && <Header />}
-        <div className="wrapper">
-          {isLoggedIn && <UserPanel />}
-          <Suspense fallback={null}>
-            <Outlet />
-          </Suspense>
+    <>
+      {isLoggedIn && <Header />}
+      <Container>
+        <div style={{ minHeight: '100vh' }}>
+          <div className="wrapper">
+            {isLoggedIn && <UserPanel />}
+            <Suspense fallback={null}>
+              <Outlet />
+            </Suspense>
+          </div>
         </div>
-      </div>
-      <ToastContainer position="bottom-center" autoClose={2000} />
-    </Container>
+        <ToastContainer position="bottom-center" autoClose={2000} />
+      </Container>
+    </>
   );
 };
