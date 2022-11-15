@@ -15,12 +15,11 @@ import { HomePageWrapper } from './HomePage.styled';
 import {
   getAllTransactions,
   getTransactionCategories,
+  getTransactionsSummary,
 } from 'redux/transactions/operations';
 import { useLocation } from 'react-router-dom';
 import StatisticsSubPage from 'pages/StatisticsSubPage/StatisticsSubPage';
-import { Header } from 'components/Header/Header';
 import { CurrencySubPage } from 'pages/CurrencySubPage/CurrencySubPage';
-import { UserPanel } from 'components/UserPanel/UserPanel';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -33,6 +32,7 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(getTransactionCategories());
     dispatch(getAllTransactions());
+    dispatch(getTransactionsSummary({month: 11, year: 2022}))
   }, [dispatch]);
 
   const renderSubPage = () => {

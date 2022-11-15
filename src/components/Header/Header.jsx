@@ -11,6 +11,7 @@ import {
 } from './Header.styled';
 import { logOut } from 'redux/auth/operations';
 import { useMedia } from 'react-use';
+import { Container } from 'components/Container/Container';
 
 export const Header = () => {
   const { user } = useSelector(selectAuth);
@@ -19,17 +20,19 @@ export const Header = () => {
 
   return (
     <StyledHeader>
-      <HeaderWrapper>
-        {isMobile ? <LogoMobile /> : <Logo />}
-        <LogOutWrapper>
-          {user.username}
-          <button type="button" onClick={() => dispatch(logOut())}>
-            <Wrapper>
-              <IconLogout /> {!isMobile && 'Exit'}
-            </Wrapper>
-          </button>
-        </LogOutWrapper>
-      </HeaderWrapper>
+      <Container>
+        <HeaderWrapper>
+          {isMobile ? <LogoMobile /> : <Logo />}
+          <LogOutWrapper>
+            {user.username}
+            <button type="button" onClick={() => dispatch(logOut())}>
+              <Wrapper>
+                <IconLogout /> {!isMobile && 'Exit'}
+              </Wrapper>
+            </button>
+          </LogOutWrapper>
+        </HeaderWrapper>
+      </Container>
     </StyledHeader>
   );
 };
