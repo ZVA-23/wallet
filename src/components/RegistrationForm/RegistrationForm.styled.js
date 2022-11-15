@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import frametablet from '../../images/frame-registration/frametablet.png';
-import framedesctop from '../../images/frame-registration/framedesctop.png';
 
+export const Logo = styled.img`
+	margin-bottom: 60px;
+`
 export const InputContainer = styled.label`
   position: relative;
   svg {
@@ -27,10 +28,10 @@ export const ConfirmPasswordLabel = styled.label`
   :after {
     opacity: ${props => (props.progressPassword ? '1' : '0')};
     width: ${props =>
-      `${(props.confirmPassword.length / props.password.length) * 100}%`};
+		`${(props.confirmPassword.length / props.password.length) * 100}%`};
 
     background-color: ${props =>
-      props.password === props.confirmPassword ? 'var(--accent-color)' : 'red'};
+		props.password === props.confirmPassword ? 'var(--accent-color)' : 'red'};
 
     content: '';
     position: absolute;
@@ -88,27 +89,21 @@ export const ActiveBtn = styled.button`
   text-transform: uppercase;
 `;
 
-export const RegisterFormContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-`;
-
 export const Form = styled.form`
   gap: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--main-bg-color);
 
   @media screen and (min-width: 768px) {
-    padding-top: 400px;
+    padding: 40px 65px 66px;
+	 border-radius: 20px;
+	 width: 533px;
   }
 
   @media screen and (min-width: 1280px) {
-    padding-top: 52px;
-    padding-left: 51vw;
-    padding-right: 7vw;
+    
   }
 `;
 
@@ -120,31 +115,3 @@ export const BtnContainer = styled.div`
   margin: 0;
 `;
 
-export const CreateRegisterPage = styled.div`
-  @media screen and (min-width: 768px) {
-    position: absolute;
-    display: block;
-    background-repeat: no-repeat;
-
-    background-image: url(${frametablet});
-    width: 273.93px;
-    height: 250px;
-    left: 50%;
-    top: 60px;
-    transform: translateX(-70%);
-  }
-
-  @media screen and (min-width: 1280px) {
-    position: absolute;
-    display: block;
-    background-repeat: no-repeat;
-
-    background-image: url(${framedesctop});
-    background-size: cover;
-    width: 410px;
-    height: 412px;
-    left: 50%;
-    top: 153px;
-    transform: translateX(-110%);
-  }
-`;

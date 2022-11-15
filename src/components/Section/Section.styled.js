@@ -8,6 +8,6 @@ export const SectionTag = styled.section`
   }
 
   @media (min-width: 1280px) {
-		padding: 46px 0 40px;
+		padding: 40px 0 30px;
   }
 `

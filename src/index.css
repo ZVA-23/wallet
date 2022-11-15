@@ -34,10 +34,6 @@ body {
 	margin: 0;
 	font-family: "Circe", sans-serif;
 	color: var(--main-text-color);
-	background-image: url("./images/background/background-desk.png");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 
 code {
@@ -77,15 +73,4 @@ button {
 	background-color: transparent;
 	font-family: inherit;
 	cursor: pointer;
-}
-
-.wrapper {
-	display: grid;
-	grid-template-columns: 1fr;
-}
-
-@media (min-width: 768px) {
-	.wrapper {
-		grid-template-columns: 1fr 1fr;
-	}
 }
