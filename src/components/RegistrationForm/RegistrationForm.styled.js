@@ -52,7 +52,7 @@ export const InputField = styled.input`
   font-size: 18px;
   line-height: calc(27 / 18);
   margin-right: 20px;
-
+  border-radius: 20px;
 
   &:focus {
     border-color: var(--accent-color);

@@ -71,7 +71,7 @@ export const InputField = styled.input`
   outline: none;
   font-size: 18px;
   line-height: calc(27 / 18);
-
+  border-radius: 20px;
   &:focus {
     border-color: var(--accent-color);
   }
