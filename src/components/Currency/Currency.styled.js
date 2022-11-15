@@ -87,4 +87,22 @@ export const TableText = styled.td`
   }
 `;
 
+
+export const TextError = styled.p`
+  width: 70%;
+  text-align: center;
+  margin: 0 auto;
+  padding: 60px 20px;
+
+  @media (min-width: 768px) {
+    padding: 80px 10px;
+    font-size: 18px;
+  }
+
+  @media (min-width: 1280px) {
+    padding: 120px 10px;
+    font-size: 24px;
+  }
+`;
+
 export const TableRow = styled.tr``;
