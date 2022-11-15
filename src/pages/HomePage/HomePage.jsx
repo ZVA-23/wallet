@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTransactions, selectAuth } from 'redux/selectors';
+import { selectTransactions } from 'redux/selectors';
 import { Main } from 'components/Main/Main';
 import { Section } from 'components/Section/Section';
 import { Container } from 'components/Container/Container';
@@ -22,9 +22,6 @@ import { CurrencySubPage } from 'pages/CurrencySubPage/CurrencySubPage';
 import { UserPanel } from '../../components/UserPanel/UserPanel';
 
 const HomePage = () => {
-
-	const { isLoggedIn } = useSelector(selectAuth);
-
 	const dispatch = useDispatch();
 	const location = useLocation();
 	const transactions = useSelector(selectTransactions);
@@ -55,7 +52,7 @@ const HomePage = () => {
 				<Section>
 					<Container>
 						<HomePageWrapper>
-							{isLoggedIn && <UserPanel />}
+							<UserPanel />
 							{renderSubPage()}
 							{transactions.items.length > 0 ? (
 								<HomeTab />
