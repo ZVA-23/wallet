@@ -64,14 +64,14 @@ export const RegisterForm = () => {
         setEmail('');
         setPassword('');
         setConfirmPassword('');
-      })
+      }).then(()=> toast.success('You have been registrated'))
       .catch(() => toast.error('You have some invalid fields!'));
   };
+
   return (
     <RegisterFormContainer>
       <Form onSubmit={handleSubmit}>
         <img src={logoWallet} alt="Wallet" width="181" height="40" />
-
         <InputContainer>
           <IoMdMail />
           <InputField
@@ -83,7 +83,6 @@ export const RegisterForm = () => {
             onChange={handleChange}
           />
         </InputContainer>
-
         <InputContainer>
           <MdLock />
           <InputField
@@ -94,7 +93,6 @@ export const RegisterForm = () => {
             onChange={handleChange}
           />
         </InputContainer>
-
         <ConfirmPasswordLabel
           progressPassword={text}
           password={password}
@@ -109,7 +107,6 @@ export const RegisterForm = () => {
             onChange={handleChange}
           />
         </ConfirmPasswordLabel>
-
         <InputContainer>
           <IoPersonSharp />
           <InputField
