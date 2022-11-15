@@ -6,6 +6,7 @@ import WaveMob from '../../images/currency/Wave_mob.svg';
 export const TableWrap = styled.div`
   width: 280px;
   height: 174px;
+  margin: 0 auto;
 
   border-radius: 30px;
   color: var(--main-bg-color);
@@ -22,6 +23,7 @@ export const TableWrap = styled.div`
   @media (min-width: 768px) {
     width: 336px;
     height: 182px;
+    margin: 0;
 
     background-image: url(${WaveTab}),
       linear-gradient(
