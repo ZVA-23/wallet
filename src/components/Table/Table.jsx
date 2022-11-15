@@ -1,6 +1,10 @@
-export const Table = () => {
- 
-  return(
+// import React from 'react';
 
-  )
-}
+// export const Table = () => {
+
+//   return (
+//     <>
+//       <p>H</p>
+//     </>
+//   )
+// }
