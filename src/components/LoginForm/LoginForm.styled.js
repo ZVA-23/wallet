@@ -1,21 +1,30 @@
 import styled from 'styled-components';
 
+export const Logo = styled.img`
+	margin: 0 auto 60px auto;
+`
+
 export const LoginContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+ background-color: var(--main-bg-color);
+
+  @media screen and (min-width: 768px) {
+    padding: 40px 65px 66px;
+	 border-radius: 20px;
+	 width: 533px;
+  }
 `;
 
 export const EnterForm = styled.form`
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 export const InputContainer = styled.label`
   position: relative;
+  display: block;
+  margin-top: 40px;
+
+  :first-child{
+	margin-top: 0;
+  }
 
   svg {
     position: absolute;
@@ -28,7 +37,8 @@ export const InputContainer = styled.label`
 `;
 
 export const InActiveBtn = styled.button`
-  width: 300px;
+margin-top: 20px;
+  width: 280px;
   padding: 13px 0;
   background-color: #ffffff;
   border-radius: 20px;
@@ -38,15 +48,20 @@ export const InActiveBtn = styled.button`
   line-height: calc(27 / 18);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  transition: background-color var(--animation), color var(--animation);
 
-  &:hover {
-    background-color: var(--accent-color);
-    color: var(--light-text-color);
-    outline: none;
-  }
+	:hover, :focus{
+		background-color: var(--search-text-color);
+		color: var(--light-text-color);
+	}
+
+	@media (min-width: 768px)  {
+		width: 300px;
+	}
 `;
 export const ActiveBtn = styled.button`
-  width: 300px;
+ margin-top: 40px;
+  width: 280px;
   padding: 13px 0;
   background-color: var(--accent-color);
   border-radius: 20px;
@@ -55,6 +70,18 @@ export const ActiveBtn = styled.button`
   line-height: calc(27 / 18);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: background-color var(--animation), color var(--animation), border-color var(--animation);
+
+	:hover, :focus{
+		background-color: var(--main-bg-color);
+		color: var(--accent-color);
+		border-color: var(--accent-color);
+	}
+
+	@media (min-width: 768px)  {
+		width: 300px;
+	}
 `;
 
 export const InputField = styled.input`

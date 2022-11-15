@@ -16,7 +16,8 @@ import {
 	InActiveBtn,
 	InputContainer,
 	ConfirmPasswordLabel,
-	Logo
+	Logo,
+	FormWrapper
 } from './RegistrationForm.styled';
 
 export const RegisterForm = () => {
@@ -67,60 +68,61 @@ export const RegisterForm = () => {
 			.catch(() => toast.error('You have some invalid fields!'));
 	};
 
-	return (<Form onSubmit={handleSubmit}>
+	return (<FormWrapper>
 		<Logo src={logoWallet} alt="Wallet" width="181" height="40" />
-		<InputContainer>
-			<IoMdMail />
-			<InputField
-				type="email"
-				name="email"
-				color="primary"
-				placeholder="E-mail"
-				value={email}
-				onChange={handleChange}
-			/>
-		</InputContainer>
-		<InputContainer>
-			<MdLock />
-			<InputField
-				type="password"
-				name="password"
-				value={password}
-				placeholder="Password"
-				onChange={handleChange}
-			/>
-		</InputContainer>
-		<ConfirmPasswordLabel
-			progressPassword={text}
-			password={password}
-			confirmPassword={confirmPassword}
-		>
-			<MdLock />
-			<InputField
-				type="password"
-				name="confirmPassword"
-				placeholder="Confirm password"
-				value={confirmPassword}
-				onChange={handleChange}
-			/>
-		</ConfirmPasswordLabel>
-		<InputContainer>
-			<IoPersonSharp />
-			<InputField
-				type="text"
-				name="username"
-				placeholder="First name"
-				value={username}
-				onChange={handleChange}
-			/>
-		</InputContainer>
-		<BtnContainer>
-			<ActiveBtn type="submit">Register</ActiveBtn>
-			<Link to="/login">
-				<InActiveBtn variant="outlined">Log in</InActiveBtn>
-			</Link>
-		</BtnContainer>
-	</Form>
-
+		<Form onSubmit={handleSubmit}>
+			<InputContainer>
+				<IoMdMail />
+				<InputField
+					type="email"
+					name="email"
+					color="primary"
+					placeholder="E-mail"
+					value={email}
+					onChange={handleChange}
+				/>
+			</InputContainer>
+			<InputContainer>
+				<MdLock />
+				<InputField
+					type="password"
+					name="password"
+					value={password}
+					placeholder="Password"
+					onChange={handleChange}
+				/>
+			</InputContainer>
+			<ConfirmPasswordLabel
+				progressPassword={text}
+				password={password}
+				confirmPassword={confirmPassword}
+			>
+				<MdLock />
+				<InputField
+					type="password"
+					name="confirmPassword"
+					placeholder="Confirm password"
+					value={confirmPassword}
+					onChange={handleChange}
+				/>
+			</ConfirmPasswordLabel>
+			<InputContainer>
+				<IoPersonSharp />
+				<InputField
+					type="text"
+					name="username"
+					placeholder="First name"
+					value={username}
+					onChange={handleChange}
+				/>
+			</InputContainer>
+			<BtnContainer>
+				<ActiveBtn type="submit">Register</ActiveBtn>
+				<Link to="/login">
+					<InActiveBtn variant="outlined">Log in</InActiveBtn>
+				</Link>
+			</BtnContainer>
+		</Form>
+	</FormWrapper>
 	);
 };

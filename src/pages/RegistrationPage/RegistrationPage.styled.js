@@ -38,7 +38,6 @@ export const PageTitle = styled.h1`
 
 export const RegisterFormContainer = styled.div`
   
-
   @media (min-width: 768px) {
 	display: flex;
 	flex-direction: column;

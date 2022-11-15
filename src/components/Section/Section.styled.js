@@ -8,6 +8,12 @@ export const SectionTag = styled.section`
   }
 
   @media (min-width: 1280px) {
-		padding: 40px 0 30px;
+		padding: ${p => {
+		if (p.location === "/register") {
+			return "32px 0 40px"
+		} else {
+			return "49px 0 55px"
+		}
+	}};
   }
 `
