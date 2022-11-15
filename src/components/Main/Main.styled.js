@@ -9,7 +9,7 @@ export const MainTag = styled.main`
 		if (p.location === "/register" || p.location === "/login") {
 			return "var(--main-bg-color)"
 		}
-		if (p.location === "/home" || p.location === "/statistics") {
+		if (p.location === "/home" || p.location === "/statistics" || p.location === "/currency") {
 			return "#E7EAF2"
 		}
 	}};
