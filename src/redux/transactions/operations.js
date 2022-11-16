@@ -63,9 +63,9 @@ export const getTransactionCategories = createAsyncThunk(
 
 export const getTransactionsSummary = createAsyncThunk(
     'transactions/summary',
-    async (query, thunkApi) => {
+    async ({month, year}, thunkApi) => {
         try {
-            const { data } = await axios.get(`/transactions-summary`, query);
+            const { data } = await axios.get(`/transactions-summary?month=${month}&year=${year}`);
             return data;
         } catch (e) {
             return thunkApi.rejectWithValue(e.message)

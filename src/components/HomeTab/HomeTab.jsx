@@ -50,7 +50,7 @@ export const HomeTab = () => {
 										amount,
 										balanceAfter,
 									}) => (
-										<Table type>
+										<Table type={type}>
 											<Tr key={`${id}Data`}>
 												<Th left>Date</Th>
 												<Td right>
@@ -97,7 +97,7 @@ export const HomeTab = () => {
 				<Box>
 					<Table>
 						<THead>
-							<Tr>
+							<Tr key="headtable">
 								<Th>Date</Th>
 								<Th center>Type</Th>
 								<Th>Category</Th>
