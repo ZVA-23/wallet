@@ -1,51 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+// import React, { useState, useEffect } from 'react';
 // import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { useSelector } from 'react-redux';
-// import { selectTransactionsSummary } from 'redux/selectors';
-import { selectTransactionsSummary } from 'redux/selectors';
+import { selectTransactions, selectTransactionsSummary } from 'redux/selectors';
 // import { getAllTransactions, getTransactionCategories, getTransactionsSummary } from 'redux/transactions/operations';
-import { getTransactionsSummary } from 'redux/transactions/operations';
-import { Box, BoxChart, BoxTitle, Title, BoxSelect, Inner } from './DiagramTab.styled';
+import { getAllTransactions, getTransactionsSummary } from 'redux/transactions/operations';
+import { Box, BoxChart, BoxTitle, Title, BoxSelect, Inner, Balance } from './DiagramTab.styled';
 import { Chart } from "components/Chart/Chart";
 import { Table } from "components/Table/Table";
 import { SelectForm } from 'components/SelectForm/SelectForm';
-import { setColors } from "helpers/setColors";
+// import { toast } from "react-toastify";
+// import 'react-toastify/dist/ReactToastify.css';
 
 export const DiagramTab = () => {
 
 	const dispatch = useDispatch();
-	// const transactions = useSelector(selectTransasctions);
-	// const transactionsData = transactions.items;
-	// const transactionsCategories = transactions.categories;
+	const transactions = useSelector(selectTransactions);
 	const transactionsSummary = useSelector(selectTransactionsSummary);
-	const { categoriesSummary, expenseSummary, incomeSummary } = transactionsSummary;
-	// const { categoriesSummary, expenseSummary, incomeSummary, periodTotal } = transactionsSummary;
-	//=============================
 
-	const [showTransactionsStatistics, setShowTransactionsStatistics] = useState(categoriesSummary.filter(e =>
-		e.type === "EXPENSE"));
+	const totalBalance = transactions.totalBalance.toFixed(2);
 
-	const [statisticsTableData, setStatisticsTableData] = useState({ showTransactionsStatistics, expenseSummary, incomeSummary });
+	// const [numberMonth, setNumberMonth] = useState(11);
+	// const [numberYear, setNumberYear] = useState(2022);
+	const [statisticsData, setStatisticsData] = useState({ ...transactionsSummary });
 
-	useEffect(() => {
-		// dispatch(getAllTransactions());
+	// useEffect(() => {
+	// 	// dispatch(getAllTransactions());
+	// 	console.log(transactionsSummary);
+	// 	console.log(statisticsData);
+	// }, [dispatch]);
 
-		setShowTransactionsStatistics(setColors(categoriesSummary.filter(e => e.type === "EXPENSE")));
+	const submitHandler = ({ selectedMonth, selectedYear }) => {
+		// setNumberMonth(parseInt(selectedMonth));
+		// setNumberYear(parseInt(selectedYear));
 
-		setStatisticsTableData({ showTransactionsStatistics, expenseSummary, incomeSummary });
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dispatch]);
+		const month = parseInt(selectedMonth);
+		const year = parseInt(selectedYear);
 
-
-	console.log(showTransactionsStatistics);
-
-	const submitHandler = (numberMonth, numberYear) => {
-		console.log(numberMonth);
-		console.log(numberYear);
-		const otzet = dispatch(getTransactionsSummary({ month: numberMonth, year: numberYear }));
-		console.log(otzet);
-		setStatisticsTableData({ showTransactionsStatistics, expenseSummary, incomeSummary });
+		dispatch(getTransactionsSummary({ month, year }));
+		dispatch(getAllTransactions());
+		setStatisticsData({ ...transactionsSummary });
 	}
 
 	return (
@@ -54,14 +49,16 @@ export const DiagramTab = () => {
 				<BoxTitle>
 					<Title>Statistics</Title>
 					<BoxChart>
-						<Chart statisticsData={showTransactionsStatistics} />
+						<Chart statisticsData={statisticsData} />
+						{statisticsData.categoriesSummary.length > 0 &&
+							<Balance>{`₴ ${totalBalance}`}</Balance>}
 					</BoxChart>
 				</BoxTitle>
 				<Inner>
 					<BoxSelect>
 						<SelectForm onSubmit={submitHandler} />
 					</BoxSelect>
-					<Table statisticsData={statisticsTableData} />
+					<Table statisticsData={statisticsData} />
 				</Inner>
 			</Box>
 		</>

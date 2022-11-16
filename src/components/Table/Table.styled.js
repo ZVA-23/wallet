@@ -8,11 +8,6 @@ export const TableStyle = styled.table`
   line-height: calc(27 / 18);
   
   background-color: transparent;
-  /* border-radius: 10px; */
-
-  &:not(:first-child) {
-    /* margin-top: 8px; */
-  }
 `;
 
 export const THead = styled.thead`
@@ -23,21 +18,18 @@ export const THead = styled.thead`
 
   text-align: left;
   background-color: var(--main-bg-color);
-  /* border-color: var(--main-bg-color); */
 `;
 
 export const TBody = styled.tbody`
 `;
 
 export const Tr = styled.tr`
-  /* padding: 0 20px; */
   height: 54px;
-
   font-weight: ${p => p.total && 700};
 
-  &:not(:last-child) && {!(p => p.total)} {
-    border-bottom: 1px solid #DCDCDF;
-    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  &:not(:last-child) {
+    border-bottom: ${p => !p.total && "1px solid #DCDCDF"};
+    box-shadow: ${p => !p.total && "0px 1px 0px rgba(255, 255, 255, 0.6)"};
   }
 `;
 
@@ -64,6 +56,8 @@ export const Th = styled.th`
 `;
 
 export const Td = styled.td`
+  position: relative;
+  
   padding: 0px 20px;
   letter-spacing: 1px;
   font-weight: ${p => p.sum && 700};
@@ -84,11 +78,18 @@ export const NoTransactions = styled.p`
   text-align: center;
 `;
 
-export const IconQuare = styled.div`
-  display: inline-block;
-  margin-right: 16px;
-  width: 24px;
-  height: 24px;
-  background-color: ${p => p.color};
-  text-align: center;
+export const IconQuare = styled.p`
+  padding-left: 40px;
+
+  &::before{
+		content: "";
+		position: absolute;
+		top: 13px;
+		left: 20px;
+
+		width: 24px;
+		height: 24px;
+
+    background-color: ${p => p.color};
+	}
 `;

@@ -1,5 +1,5 @@
-import React, { useState} from 'react';
-import { toast } from "react-toastify";
+import React, { useState } from 'react';
+// import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { ReactComponent as Arrow } from "../../icons/add-transactions/arrow-selector.svg";
 import { Form, SelectorWrapper, Selector, SelectList, SelectListItem } from "./SelectForm.styled";
@@ -29,11 +29,8 @@ export const SelectForm = ({ onSubmit }) => {
       setSelectedMonthOption(target.textContent);
       setSelectorMonth(false);
       setNumberMonth(target.id);
+      onSubmit({ selectedMonth: target.id, selectedYear:numberYear });
     }
-    console.log(target);
-    console.log(target.id);
-    console.log(numberMonth);
-    submitHandler();
   };
 
   const selectedOptionHandlerYear = ({ target }) => {
@@ -41,16 +38,9 @@ export const SelectForm = ({ onSubmit }) => {
       setSelectedYearOption(target.textContent);
       setSelectorYear(false);
       setNumberYear(target.id);
+      onSubmit({ selectedMonth: numberMonth, selectedYear: target.id });
     }
-    submitHandler();
   };
-
-  const submitHandler = e => {
-    if (numberMonth && numberYear) {
-     return onSubmit(numberMonth, numberYear);
-    } 
-    numberMonth ? toast.info("Select a year!") : toast.info("Select a month!");
-  }
 
   return (
 
@@ -58,7 +48,8 @@ export const SelectForm = ({ onSubmit }) => {
 
       <SelectorWrapper>
         <Selector
-          onClick={selectListHandlerMonth}>
+          onClick={selectListHandlerMonth}
+          >
           {selectedMonthOption}
           <Arrow />
         </Selector>

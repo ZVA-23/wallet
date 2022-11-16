@@ -50,7 +50,8 @@ export const HomeTab = () => {
 										amount,
 										balanceAfter,
 									}) => (
-										<Table type={type}>
+										<Table key={`${id}Table`} type={type}>
+										<TBody>
 											<Tr key={`${id}Data`}>
 												<Th left>Date</Th>
 												<Td right>
@@ -85,6 +86,7 @@ export const HomeTab = () => {
 												<Th left>Balance</Th>
 												<Td right>{balanceAfter.toFixed(2)}</Td>
 											</Tr>
+											</TBody>
 										</Table>
 									)
 								)}

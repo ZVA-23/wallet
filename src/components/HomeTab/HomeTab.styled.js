@@ -4,16 +4,13 @@ export const Box = styled.div`
 	margin-top: 32px;
   display: inline-block;
   width: 100%;
-  max-height: 328px;
+  /* max-height: 328px; */
   height: 60vh;
 
   overflow-y: auto;
 
   @media screen and (min-width: 768px) {
     width: 704px;
-    /* max-height: 312px; */
-    max-height: 60vh;
-    /* height: 60vh; */
 	  margin-top: 20px;
   }
   @media screen and (min-width: 1280px) {

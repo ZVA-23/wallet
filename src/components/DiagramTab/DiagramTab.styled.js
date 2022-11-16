@@ -12,6 +12,8 @@ export const Box = styled.div`
   @media screen and (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
+    align-items: start;
+ 
   }
 
   @media screen and (min-width: 1280px) {
@@ -27,17 +29,17 @@ export const Inner = styled.div`
   width: 100%;
 
   @media screen and (min-width: 768px) {
-    padding: 20px 0;
+    padding-top: 20px;
     max-width: 336px;
-
   }
 
   @media screen and (min-width: 1280px) {
-    /* width: 395px; */
+    padding-top: 65px;
   }
 `;
 
 export const BoxChart = styled.div`
+position:relative;
   display: block;
   margin-top: 8px;
   margin-left: auto;
@@ -55,6 +57,17 @@ export const BoxChart = styled.div`
   @media screen and (min-width: 1280px) {
     width: 288px;
   }
+`;
+
+export const Balance = styled.p`
+  position: absolute;
+  top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+  font-weight: 700;  
+  font-size: 18px;
+  line-height: calc(27 / 18);
 `;
 
 export const BoxTitle = styled.div`
