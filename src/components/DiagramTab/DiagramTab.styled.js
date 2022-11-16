@@ -3,13 +3,35 @@ import styled from 'styled-components';
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 32px;
+
+  margin-top: 43px;
   width: 100%;
 
   @media screen and (min-width: 768px) {
-    /* width: 336px; */
     flex-direction: row;
+    justify-content: space-between;
   }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 747px;
+    margin-top: 0;
+  }
+`;
+
+export const Inner = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    padding: 20px 0;
+    max-width: 336px;
+
+  }
+
   @media screen and (min-width: 1280px) {
     /* width: 395px; */
   }
@@ -18,22 +40,33 @@ export const Box = styled.div`
 export const BoxChart = styled.div`
   display: block;
   margin-top: 8px;
-  min-width: 280px;
-  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 280px;
+  /* max-width: 450px; */
   width: 100%;
   
-  /* height: 280px; */
-
   @media screen and (min-width: 768px) {
-    /* width: 336px; */
+    max-width: 336px;
     margin-top: 20px;
 
     max-width: none;
-    /* height: 336px; */
   }
   @media screen and (min-width: 1280px) {
     width: 288px;
-    /* height: 288px; */
+  }
+`;
+
+export const BoxTitle = styled.div`
+  display: block;
+  margin-top: 8px;
+  /* max-width: 280px; */
+  width: 280px;
+  /* width: 100%; */
+  
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1280px) {
   }
 `;
 
@@ -45,6 +78,10 @@ export const Title = styled.h2`
   font-style: normal;
   font-weight: 400;
   line-height: calc(45 / 30);
+`;
+
+export const BoxSelect = styled.div`
+  
 `;
 
 export const Table = styled.table`
