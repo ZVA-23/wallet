@@ -60,6 +60,7 @@ const HomePage = () => {
 								<Info text="Here will be your transactions." />
 							)}
 						</HomePageWrapper>
+						<ButtonAddTransactions showModalHandler={handleAddTransactionModal} />
 					</Container>
 				</Section>
 				{isModalTransactionOpen && (
@@ -73,7 +74,6 @@ const HomePage = () => {
 						</Modal>
 					</Backdrop>
 				)}
-				<ButtonAddTransactions showModalHandler={handleAddTransactionModal} />
 			</Main>
 		</>
 	);

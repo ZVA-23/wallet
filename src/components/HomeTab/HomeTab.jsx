@@ -11,7 +11,7 @@ export const HomeTab = () => {
 	const transactions = useSelector(selectTransactions);
 	const transactionsData = transactions.items;
 	const transactionsCategories = transactions.categories;
-	const isMobile = useMedia('(max-width: 768px)');
+	const isMobile = useMedia('(max-width: 767px)');
 
 	useEffect(() => {
 		dispatch(getAllTransactions());
