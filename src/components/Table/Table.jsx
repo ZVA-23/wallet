@@ -1,14 +1,16 @@
 import React from 'react';
 import { TableStyle, THead, TBody, Tr, Th, Td, NoTransactions, IconQuare } from './Table.styled';
+import { setColors } from "helpers/setColors";
+
 
 export const Table = ({ statisticsData }) => {
-  const { showTransactionsStatistics, expenseSummary, incomeSummary } = statisticsData;
+  const { categoriesSummary,  expenseSummary, incomeSummary } = statisticsData;
 
-  // console.log(showTransactionsStatistics, expenseSummary, incomeSummary);
-  console.log(showTransactionsStatistics);
+  const showCategoriesSummary = setColors(categoriesSummary.filter(e => e.type === "EXPENSE"));
+
   return (
     <>
-      {showTransactionsStatistics.length > 0 ? (
+      {showCategoriesSummary.length > 0 ? (
         <TableStyle>
           <THead>
             <Tr key="head">
@@ -17,7 +19,7 @@ export const Table = ({ statisticsData }) => {
             </Tr>
           </THead>
           <TBody>
-            {showTransactionsStatistics.map(
+            {showCategoriesSummary.map(
               ({
                 color,
                 name,
@@ -26,7 +28,7 @@ export const Table = ({ statisticsData }) => {
               }, idx) => (
                 <Tr key={idx + name}>
                   <Td left>
-                    <IconQuare color={color}></IconQuare>{name}</Td>
+                    <IconQuare color={color}>{name}</IconQuare></Td>
                   <Td right>{total > 0
                     ? total.toFixed(2)
                     : (-total).toFixed(2)}</Td>
@@ -48,7 +50,7 @@ export const Table = ({ statisticsData }) => {
         </TableStyle>
       ) : (
         <NoTransactions>
-          No data
+          {/* No data */}
         </NoTransactions>
       )}
     </>

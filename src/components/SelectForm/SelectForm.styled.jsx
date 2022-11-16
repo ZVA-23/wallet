@@ -3,18 +3,25 @@ import { keyframes } from "styled-components";
 
 export const Form = styled.form`
 	min-width: 280px;
-	height: 120px;
+	/* height: 120px; */
 	
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
 	
 	@media screen and (min-width: 768px) {
-		flex-direction: rows;
+		flex-direction: row;
+		justify-content: space-between;
+		gap: 16px;
+	}
+	
+	@media screen and (min-width: 1280px) {
+		gap: 32px;
 	}
 `
 export const SelectorWrapper = styled.div`
 	position: relative;
+	width: 100%;
 `
 export const Selector = styled.div`
 	padding: 12px 20px 14px;

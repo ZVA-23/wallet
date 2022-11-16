@@ -1,18 +1,22 @@
 import React from "react";
 import { Chart as ChartComponent, ArcElement, Tooltip } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { setColors } from "helpers/setColors";
 
 ChartComponent.register(ArcElement, Tooltip);
 
 export const Chart = ({ statisticsData }) => {
-  console.log(statisticsData);
+
+  const { categoriesSummary } = statisticsData;
+
+  const showCategoriesSummary = setColors(categoriesSummary.filter(e => e.type === "EXPENSE"));
 
   const doughnutChartData = {
-    labels: statisticsData.map(el => el.name),
+    labels: showCategoriesSummary.map(el => el.name),
     datasets: [
       {
-        data: statisticsData.map(el => -el.total),
-        backgroundColor: statisticsData.map(el => el.color),
+        data: showCategoriesSummary.map(el => -el.total),
+        backgroundColor: showCategoriesSummary.map(el => el.color),
         borderColor: "black",
         borderWidth: 2,
       }]
