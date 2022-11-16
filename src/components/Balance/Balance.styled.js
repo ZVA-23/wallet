@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const BalanceWrap = styled.div`
-margin-top: 12px;
+  margin-top: 12px;
   width: 100%;
   height: 80px;
 
@@ -10,7 +10,7 @@ margin-top: 12px;
 
   @media (min-width: 768px) {
     width: 336px;
-	 /* margin-top: 28px; */
+    /* margin-top: 28px; */
   }
   @media (min-width: 1280px) {
     width: 395px;
@@ -35,9 +35,14 @@ export const BalanceTitle = styled.p`
 `;
 
 export const BalanceTotal = styled.p`
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
+  line-height: 45px;
   color: var(--main-text-color);
+`;
+
+export const BalanceIcon = styled.span`
+  font-weight: 400;
 `;
