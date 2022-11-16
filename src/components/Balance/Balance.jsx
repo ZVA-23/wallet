@@ -6,6 +6,7 @@ import {
 	BalanceContent,
 	BalanceTitle,
 	BalanceTotal,
+   BalanceIcon
 } from './Balance.styled';
 
 export const Balance = () => {
@@ -15,7 +16,7 @@ export const Balance = () => {
 		<BalanceWrap>
 			<BalanceContent>
 				<BalanceTitle>Your balance</BalanceTitle>
-				<BalanceTotal>$ {transactions.totalBalance.toFixed(2)}</BalanceTotal>
+				<BalanceTotal><BalanceIcon>&#8372;</BalanceIcon>  {transactions.totalBalance.toFixed(2)}</BalanceTotal>
 			</BalanceContent>
 		</BalanceWrap>
 	);
