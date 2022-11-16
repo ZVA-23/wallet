@@ -31,7 +31,7 @@ const menuMobile = [
 ]
 
 export const Navigation = () => {
-	const isMobile = useMedia('(max-width: 768px)');
+	const isMobile = useMedia('(max-width: 767px)');
 	return (
 		<nav>
 			<Ul>

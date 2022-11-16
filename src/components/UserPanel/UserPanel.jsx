@@ -5,16 +5,16 @@ import { useMedia } from 'react-use';
 import { NavAndInfoWrapper } from './UserPanel.styled';
 
 export const UserPanel = () => {
-  const isMobile = useMedia('(max-width: 768px)');
-  return (
-    <>
-      <NavAndInfoWrapper>
-        <div>
-          <Navigation />
-          <Balance />
-        </div>
-        {!isMobile && <Currency />}
-      </NavAndInfoWrapper>
-    </>
-  );
+	const isMobile = useMedia('(max-width: 767px)');
+	return (
+		<>
+			<NavAndInfoWrapper>
+				<div>
+					<Navigation />
+					<Balance />
+				</div>
+				{!isMobile && <Currency />}
+			</NavAndInfoWrapper>
+		</>
+	);
 };

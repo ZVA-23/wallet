@@ -9,7 +9,7 @@ const LoginPage = () => {
 	const location = useLocation();
 
 	return <Main location={location.pathname}>
-		<Section>
+		<Section location={location.pathname}>
 			<Container>
 				<LoginWrapper>
 					<ImageAndTitleWrapper>

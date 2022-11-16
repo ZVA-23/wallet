@@ -9,10 +9,33 @@ export const SectionTag = styled.section`
 
   @media (min-width: 1280px) {
 		padding: ${p => {
-		if (p.location === "/register") {
-			return "32px 0 40px"
+		if (p.location === "/register" || p.location === "/login") {
+			return;
 		} else {
-			return "49px 0 55px"
+			return "40px 0 30px"
+		}
+	}};
+	
+	min-height: ${p => {
+		if (p.location === "/register" || p.location === "/login") {
+			return "100vh"
+		} else {
+			return;
+		}
+	}};
+	
+	display: ${p => {
+		if (p.location === "/register" || p.location === "/login") {
+			return "flex"
+		} else {
+			return;
+		}
+	}};
+	align-items: ${p => {
+		if (p.location === "/register" || p.location === "/login") {
+			return "center"
+		} else {
+			return;
 		}
 	}};
 	
