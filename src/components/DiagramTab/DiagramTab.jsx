@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { useSelector } from 'react-redux';
 // import { selectTransactionsSummary } from 'redux/selectors';
-import { selectTransactions, selectTransactionsSummary } from 'redux/selectors';
-import { getAllTransactions, getTransactionCategories, getTransactionsSummary } from 'redux/transactions/operations';
+import { selectTransactionsSummary } from 'redux/selectors';
+// import { getAllTransactions, getTransactionCategories, getTransactionsSummary } from 'redux/transactions/operations';
+import { getTransactionsSummary } from 'redux/transactions/operations';
 import { Box, BoxChart, BoxTitle, Title, BoxSelect, Inner } from './DiagramTab.styled';
 import { Chart } from "components/Chart/Chart";
 import { Table } from "components/Table/Table";
 import { SelectForm } from 'components/SelectForm/SelectForm';
-// import { Container } from 'components/Container/Container';
 import { setColors } from "helpers/setColors";
 
 export const DiagramTab = () => {
@@ -34,6 +34,7 @@ export const DiagramTab = () => {
 		setShowTransactionsStatistics(setColors(categoriesSummary.filter(e => e.type === "EXPENSE")));
 
 		setStatisticsTableData({ showTransactionsStatistics, expenseSummary, incomeSummary });
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);
 
 

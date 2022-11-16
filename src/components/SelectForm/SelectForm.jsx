@@ -1,8 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectTransactions, selectTransactionsSummary } from 'redux/selectors';
-import { getAllTransactions, getTransactionCategories, getTransactionsSummary } from 'redux/transactions/operations';
-
+import React, { useState} from 'react';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { ReactComponent as Arrow } from "../../icons/add-transactions/arrow-selector.svg";
@@ -34,6 +30,9 @@ export const SelectForm = ({ onSubmit }) => {
       setSelectorMonth(false);
       setNumberMonth(target.id);
     }
+    console.log(target);
+    console.log(target.id);
+    console.log(numberMonth);
     submitHandler();
   };
 
@@ -59,8 +58,7 @@ export const SelectForm = ({ onSubmit }) => {
 
       <SelectorWrapper>
         <Selector
-          onClick={selectListHandlerMonth
-          }>
+          onClick={selectListHandlerMonth}>
           {selectedMonthOption}
           <Arrow />
         </Selector>
@@ -68,7 +66,7 @@ export const SelectForm = ({ onSubmit }) => {
           <SelectList onClick={selectedOptionHandlerMonth}>
             {months.map((month, idx) =>
               <SelectListItem
-                key={idx + month}
+                key={idx + "month"}
                 id={idx + 1}>
                 {month}
               </SelectListItem>)}
@@ -77,8 +75,7 @@ export const SelectForm = ({ onSubmit }) => {
 
       <SelectorWrapper>
         <Selector
-          onClick={selectListHandlerYear
-          }>
+          onClick={selectListHandlerYear}>
           {selectedYearOption}
           <Arrow />
         </Selector>
@@ -86,7 +83,7 @@ export const SelectForm = ({ onSubmit }) => {
           <SelectList onClick={selectedOptionHandlerYear}>
             {years.map((year, idx) =>
               <SelectListItem
-                key={idx + year}
+                key={idx + "year"}
                 id={year}>
                 {year}
               </SelectListItem>)}
