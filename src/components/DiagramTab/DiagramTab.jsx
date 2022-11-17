@@ -7,6 +7,7 @@ import { Chart } from "components/Chart/Chart";
 import { Table } from "components/Table/Table";
 import { SelectForm } from 'components/SelectForm/SelectForm';
 import { Loader } from "components/Loader/Loader";
+import { numberWithSpaces } from "helpers/numberWithSpaces";
 
 export const DiagramTab = () => {
 
@@ -14,9 +15,9 @@ export const DiagramTab = () => {
 	const transactions = useSelector(selectTransactions);
 	const transactionsSummary = useSelector(selectTransactionsSummary);
 
-	const totalBalance = transactions.totalBalance.toFixed(2);
+	const totalBalance = numberWithSpaces(transactions.totalBalance.toFixed(2));
 
-	const [numberMonth, setNumberMonth] = useState(new Date().getMonth()+1);
+	const [numberMonth, setNumberMonth] = useState(new Date().getMonth() + 1);
 	const [numberYear, setNumberYear] = useState(new Date().getFullYear());
 	const isLoading = useSelector(selectTransactions).isLoading;
 
