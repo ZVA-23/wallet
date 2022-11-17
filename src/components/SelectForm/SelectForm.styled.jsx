@@ -3,8 +3,9 @@ import { keyframes } from "styled-components";
 
 export const Form = styled.form`
 	min-width: 280px;
-	/* height: 120px; */
 	
+	cursor: pointer;
+
 	display: flex;
 	flex-direction: column;
 	gap: 20px;

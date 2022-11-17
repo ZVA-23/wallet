@@ -1,16 +1,19 @@
 import React from 'react';
-import { TableStyle, THead, TBody, Tr, Th, Td, NoTransactions, IconQuare} from './Table.styled';
+import { useSelector} from 'react-redux';
+import { selectTransactionsSummary } from 'redux/selectors';
+import { TableStyle, THead, TBody, Tr, Th, Td, NoTransactions, IconQuare } from './Table.styled';
 import { setColors } from "helpers/setColors";
 
+export const Table = () => {
 
-export const Table = ({ statisticsData }) => {
-  const { categoriesSummary,  expenseSummary, incomeSummary } = statisticsData;
-
+  const statisticsData = useSelector(selectTransactionsSummary);
+  const { categoriesSummary, expenseSummary, incomeSummary } = statisticsData;
+  console.log(categoriesSummary);
   const showCategoriesSummary = setColors(categoriesSummary.filter(e => e.type === "EXPENSE"));
 
   return (
     <>
-         {showCategoriesSummary.length > 0 ? (
+      {showCategoriesSummary.length > 0 ? (
         <TableStyle>
           <THead>
             <Tr key="head">
@@ -50,7 +53,7 @@ export const Table = ({ statisticsData }) => {
         </TableStyle>
       ) : (
         <NoTransactions>
-        No data was found for your search, please choose another search period.
+          No data was found for your search, please choose another search period.
         </NoTransactions>
       )}
     </>

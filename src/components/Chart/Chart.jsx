@@ -1,11 +1,15 @@
 import React from "react";
+import { useSelector} from 'react-redux';
+import { selectTransactionsSummary } from 'redux/selectors';
 import { Chart as ChartComponent, ArcElement, Tooltip } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { setColors } from "helpers/setColors";
 
 ChartComponent.register(ArcElement, Tooltip);
 
-export const Chart = ({ statisticsData }) => {
+export const Chart = () => {
+
+  const statisticsData = useSelector(selectTransactionsSummary);
 
   const { categoriesSummary } = statisticsData;
 
