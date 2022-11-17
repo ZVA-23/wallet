@@ -15,7 +15,7 @@ export const NavAndInfoWrapper = styled.div`
 	::after{
 		content: "";
 		position: absolute;
-		top: -49px;
+		top: -40px;
 		right: -69px;
 		height: calc(100vh - 88px);
 		width: 1px;
