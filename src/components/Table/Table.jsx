@@ -8,7 +8,7 @@ export const Table = () => {
 
   const statisticsData = useSelector(selectTransactionsSummary);
   const { categoriesSummary, expenseSummary, incomeSummary } = statisticsData;
-  console.log(categoriesSummary);
+  
   const showCategoriesSummary = setColors(categoriesSummary.filter(e => e.type === "EXPENSE"));
 
   return (
