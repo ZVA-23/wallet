@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableStyle, THead, TBody, Tr, Th, Td, NoTransactions, IconQuare } from './Table.styled';
+import { TableStyle, THead, TBody, Tr, Th, Td, NoTransactions, IconQuare} from './Table.styled';
 import { setColors } from "helpers/setColors";
 
 
@@ -10,7 +10,7 @@ export const Table = ({ statisticsData }) => {
 
   return (
     <>
-      {showCategoriesSummary.length > 0 ? (
+         {showCategoriesSummary.length > 0 ? (
         <TableStyle>
           <THead>
             <Tr key="head">
@@ -50,7 +50,7 @@ export const Table = ({ statisticsData }) => {
         </TableStyle>
       ) : (
         <NoTransactions>
-          {/* No data */}
+        No data was found for your search, please choose another search period.
         </NoTransactions>
       )}
     </>

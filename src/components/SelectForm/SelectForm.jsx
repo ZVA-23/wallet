@@ -1,19 +1,34 @@
 import React, { useState } from 'react';
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { ReactComponent as Arrow } from "../../icons/add-transactions/arrow-selector.svg";
 import { Form, SelectorWrapper, Selector, SelectList, SelectListItem } from "./SelectForm.styled";
 
-export const SelectForm = ({ onSubmit }) => {
+export const SelectForm = ({ onSelected }) => {
 
   const [selectorMonth, setSelectorMonth] = useState(false);
   const [selectorYear, setSelectorYear] = useState(false);
-  const [numberMonth, setNumberMonth] = useState(null);
-  const [numberYear, setNumberYear] = useState(2022);
+
+  const [numberMonth, setNumberMonth] = useState();
+  const [numberYear, setNumberYear] = useState();
+
   const [selectedMonthOption, setSelectedMonthOption] = useState("Month");
   const [selectedYearOption, setSelectedYearOption] = useState("Year");
 
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
 
   const years = [2022, 2021, 2020];
 
@@ -26,21 +41,36 @@ export const SelectForm = ({ onSubmit }) => {
 
   const selectedOptionHandlerMonth = ({ target }) => {
     if (target.nodeName === 'LI') {
+
       setSelectedMonthOption(target.textContent);
       setSelectorMonth(false);
       setNumberMonth(target.id);
-      onSubmit({ selectedMonth: target.id, selectedYear:numberYear });
+      selectedHandlerForm(target.id);
     }
   };
 
   const selectedOptionHandlerYear = ({ target }) => {
     if (target.nodeName === 'LI') {
+
       setSelectedYearOption(target.textContent);
       setSelectorYear(false);
       setNumberYear(target.id);
-      onSubmit({ selectedMonth: numberMonth, selectedYear: target.id });
+      selectedHandlerForm(target.id);
     }
   };
+
+  const selectedHandlerForm = t => {
+    console.log(t);
+    console.log(numberMonth);
+    console.log(numberYear);
+
+    if (numberMonth && numberYear) {
+      console.log("IF", numberMonth);
+      console.log("IF", numberYear);
+      return onSelected({ selectedMonth: numberMonth, selectedYear: numberYear });
+    }
+    numberMonth ? toast.info("Select a year!") : toast.info("Select a month!");
+  }
 
   return (
 
@@ -48,8 +78,7 @@ export const SelectForm = ({ onSubmit }) => {
 
       <SelectorWrapper>
         <Selector
-          onClick={selectListHandlerMonth}
-          >
+          onClick={selectListHandlerMonth}>
           {selectedMonthOption}
           <Arrow />
         </Selector>
