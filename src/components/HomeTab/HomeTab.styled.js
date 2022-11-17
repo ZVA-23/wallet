@@ -4,13 +4,12 @@ export const Box = styled.div`
 	margin-top: 32px;
   display: inline-block;
   width: 100%;
-  /* max-height: 328px; */
-  height: 60vh;
+  height: 70vh;
 
   overflow-y: auto;
 
   @media screen and (min-width: 768px) {
-    width: 704px;
+    /* width: 704px; */
 	  margin-top: 20px;
   }
   @media screen and (min-width: 1280px) {
@@ -20,7 +19,7 @@ export const Box = styled.div`
 `;
 
 export const Table = styled.table`
-  /* table-layout: fixed; */
+  table-layout: fixed;
   border-collapse: collapse;
   width: 100%;
 
@@ -102,9 +101,9 @@ export const Td = styled.td`
     "var(--incom-text-color)" :
     p.sum && "var(--expense-text-color)")};
 
-  /* white-space: nowrap; 
+  white-space: nowrap; 
   overflow: hidden; 
-  text-overflow: ellipsis; */
+  text-overflow: ellipsis;
 `;
 
 export const NoTransactions = styled.p`

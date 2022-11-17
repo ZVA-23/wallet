@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectTransactions } from 'redux/selectors';
 import { getAllTransactions } from 'redux/transactions/operations';
 import { Box, Table, THead, TBody, Tr, Th, Td, NoTransactions } from './HomeTab.styled';
+import { numberWithSpaces } from "helpers/numberWithSpaces";
+import { stringWithSpaces } from "helpers/stringWithSpaces";
+
 
 export const HomeTab = () => {
 	const dispatch = useDispatch();
@@ -55,7 +58,7 @@ export const HomeTab = () => {
 											<Tr key={`${id}Data`}>
 												<Th left>Date</Th>
 												<Td right>
-													{transactionDate.split('-').join('.').slice(2)}
+													{transactionDate.slice(2).split('-').reverse().join('.')}
 												</Td>
 											</Tr>
 											<Tr key={`${id}Type`}>
@@ -78,13 +81,13 @@ export const HomeTab = () => {
 												<Th left>Sum</Th>
 												<Td right sum typeTransaction={type}>
 													{amount > 0
-														? amount.toFixed(2)
-														: (-amount).toFixed(2)}
+														? stringWithSpaces(amount.toFixed(2))
+														: stringWithSpaces((-amount).toFixed(2))}
 												</Td>
 											</Tr>
 											<Tr key={`${id}Balance`}>
 												<Th left>Balance</Th>
-												<Td right>{balanceAfter.toFixed(2)}</Td>
+												<Td right>{stringWithSpaces(numberWithSpaces(balanceAfter.toFixed(2)))}</Td>
 											</Tr>
 											</TBody>
 										</Table>
@@ -122,18 +125,18 @@ export const HomeTab = () => {
 											balanceAfter,
 										}) => (
 											<Tr key={id}>
-												<Td>{transactionDate.split('-').join('.').slice(2)}</Td>
+												<Td>{transactionDate.slice(2).split('-').reverse().join('.')}</Td>
 												<Td center>{type === 'INCOME' ? '+' : '-'}</Td>
 												<Td>{getCategoriesNamme(categoryId)}</Td>
-												<Td>
-													{comment.length > 23
+												<Td>{comment}
+													{/* {comment.length > 23
 														? `${comment.substring(0, 23)}...`
-														: comment}
+														: comment} */}
 												</Td>
 												<Td right sum typeTransaction={type}>
-													{amount > 0 ? amount.toFixed(2) : (-amount).toFixed(2)}
+													{amount > 0 ? stringWithSpaces(amount.toFixed(2)) : stringWithSpaces((-amount).toFixed(2))}
 												</Td>
-												<Td right>{balanceAfter.toFixed(2)}</Td>
+												<Td right>{stringWithSpaces(balanceAfter.toFixed(2))}</Td>
 											</Tr>
 										))}
 								</TBody>
