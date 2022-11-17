@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const AddButton = styled.button`
-	position: absolute;
+	position: fixed;
 	right: 20px;
-	bottom: 0;
+	bottom: 5px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -18,10 +18,12 @@ export const AddButton = styled.button`
 	}
 
 	@media (min-width: 768px) {
+		position: absolute;
 	 right: 32px;
 	 bottom: -40px;
   }
   @media (min-width: 1280px) {
+	position: absolute;
 	 right: 16px;
 	 bottom: 1%;
   }
