@@ -52,7 +52,7 @@ export const ConfirmPasswordLabel = styled.label`
     opacity: ${props => (props.progressPassword ? '1' : '0')};
     width: ${props =>
 		`${(props.confirmPassword.length / props.password.length) * 100}%`};
-
+		max-width: 100%;
     background-color: ${props =>
 		props.password === props.confirmPassword ? 'var(--accent-color)' : 'red'};
 

@@ -13,6 +13,7 @@ export const ModalAddTransactions = ({ showModalHandler }) => {
 	const transactions = useSelector(selectTransactions);
 	const categories = [...transactions.categories];
 	categories.pop();
+	const today = new Date(Date.now()).toLocaleString().split(',')[0].replaceAll("/", ".");
 
 	const [checked, setChecked] = useState(false);
 	const [option, setOption] = useState(true);
@@ -129,7 +130,7 @@ export const ModalAddTransactions = ({ showModalHandler }) => {
 			</SelectorWrapper>}
 			<InputWrapper>
 				<InputField value={amount} name="amount" type="text" placeholder="0.00" required onChange={formFieldHandler} />
-				<DateInput onChange={changeDate} value={transactionDate} timeFormat={false} closeOnSelect={true} dateFormat="YYYY-MM-DD" />
+				<DateInput onChange={changeDate} value={today} timeFormat={false} closeOnSelect={true} dateFormat="DD.MM.YYYY" />
 			</InputWrapper>
 			<Comment value={comment} name="comment" placeholder="Comment" onChange={formFieldHandler}></Comment>
 			<SubmitBtn type="submit">Add</SubmitBtn>
