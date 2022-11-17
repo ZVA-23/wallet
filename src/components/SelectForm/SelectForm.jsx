@@ -1,19 +1,9 @@
 import React, { useState } from 'react';
-import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { ReactComponent as Arrow } from "../../icons/add-transactions/arrow-selector.svg";
 import { Form, SelectorWrapper, Selector, SelectList, SelectListItem } from "./SelectForm.styled";
 
-export const SelectForm = ({ onSelected }) => {
-
-  const [selectorMonth, setSelectorMonth] = useState(false);
-  const [selectorYear, setSelectorYear] = useState(false);
-
-  const [numberMonth, setNumberMonth] = useState();
-  const [numberYear, setNumberYear] = useState();
-
-  const [selectedMonthOption, setSelectedMonthOption] = useState("Month");
-  const [selectedYearOption, setSelectedYearOption] = useState("Year");
+export const SelectForm = ({ numberMonth, numberYear, setNumberMonth, setNumberYear }) => {
 
   const months = [
     'January',
@@ -32,6 +22,12 @@ export const SelectForm = ({ onSelected }) => {
 
   const years = [2022, 2021, 2020];
 
+  const [selectorMonth, setSelectorMonth] = useState(false);
+  const [selectorYear, setSelectorYear] = useState(false);
+
+  const [selectedMonthOption, setSelectedMonthOption] = useState(months[numberMonth - 1]);
+  const [selectedYearOption, setSelectedYearOption] = useState(numberYear);
+
   const selectListHandlerMonth = () => {
     setSelectorMonth(!selectorMonth);
   };
@@ -45,7 +41,6 @@ export const SelectForm = ({ onSelected }) => {
       setSelectedMonthOption(target.textContent);
       setSelectorMonth(false);
       setNumberMonth(target.id);
-      selectedHandlerForm(target.id);
     }
   };
 
@@ -55,22 +50,8 @@ export const SelectForm = ({ onSelected }) => {
       setSelectedYearOption(target.textContent);
       setSelectorYear(false);
       setNumberYear(target.id);
-      selectedHandlerForm(target.id);
     }
   };
-
-  const selectedHandlerForm = t => {
-    console.log(t);
-    console.log(numberMonth);
-    console.log(numberYear);
-
-    if (numberMonth && numberYear) {
-      console.log("IF", numberMonth);
-      console.log("IF", numberYear);
-      return onSelected({ selectedMonth: numberMonth, selectedYear: numberYear });
-    }
-    numberMonth ? toast.info("Select a year!") : toast.info("Select a month!");
-  }
 
   return (
 
