@@ -12,13 +12,9 @@ import { numberWithSpaces } from "helpers/numberWithSpaces";
 
 
 export const DiagramTab = () => {
-
 	const dispatch = useDispatch();
-	// const transactions = useSelector(selectTransactions);
 	const transactionsSummary = useSelector(selectTransactionsSummary);
 	const currentBalance = useSelector(selectAuth);
-	// const totalBalance = currentBalance.balance.toFixed(2);
-
 	const totalBalance = numberWithSpaces(currentBalance.balance.toFixed(2));
 
 	const [numberMonth, setNumberMonth] = useState(new Date().getMonth() + 1);

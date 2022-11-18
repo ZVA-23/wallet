@@ -7,11 +7,16 @@ import {
 	BalanceContent,
 	BalanceTitle,
 	BalanceTotal,
-	BalanceIcon
 } from './Balance.styled';
+import { useEffect, useState } from 'react';
 
 export const Balance = () => {
 	const currentBalance = useSelector(selectAuth);
+	const [balance, setBalance] = useState(numberWithSpaces(currentBalance.balance.toFixed(2)));
+
+	useEffect(() => {
+		setBalance(numberWithSpaces(currentBalance.balance.toFixed(2)))
+	}, [currentBalance.balance])
 
 	return (
 		<BalanceWrap>
@@ -20,10 +25,7 @@ export const Balance = () => {
 					Your balance
 				</BalanceTitle>
 				<BalanceTotal>
-					<BalanceIcon>
-						&#8372;
-					</BalanceIcon>
-					{` ${numberWithSpaces(currentBalance.balance.toFixed(2))}`}
+					{`₴ ${balance}`}
 				</BalanceTotal>
 			</BalanceContent>
 		</BalanceWrap>
