@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTransactions, selectTransactionsSummary } from 'redux/selectors';
+import { selectTransactions, selectAuth, selectTransactionsSummary } from 'redux/selectors';
 import { getTransactionsSummary } from 'redux/transactions/operations';
 import { Box, BoxChart, BoxTitle, Title, BoxSelect, Inner, Balance } from './DiagramTab.styled';
 import { Chart } from "components/Chart/Chart";
@@ -8,15 +8,17 @@ import { Table } from "components/Table/Table";
 import { SelectForm } from 'components/SelectForm/SelectForm';
 import { Loader } from "components/Loader/Loader";
 
+
+
 export const DiagramTab = () => {
 
 	const dispatch = useDispatch();
-	const transactions = useSelector(selectTransactions);
+	// const transactions = useSelector(selectTransactions);
 	const transactionsSummary = useSelector(selectTransactionsSummary);
+	const currentBalance = useSelector(selectAuth);
+	const totalBalance = currentBalance.balance.toFixed(2);
 
-	const totalBalance = transactions.totalBalance.toFixed(2);
-
-	const [numberMonth, setNumberMonth] = useState(new Date().getMonth()+1);
+	const [numberMonth, setNumberMonth] = useState(new Date().getMonth() + 1);
 	const [numberYear, setNumberYear] = useState(new Date().getFullYear());
 	const isLoading = useSelector(selectTransactions).isLoading;
 
