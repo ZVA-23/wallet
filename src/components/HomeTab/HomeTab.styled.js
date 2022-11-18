@@ -104,6 +104,7 @@ export const Td = styled.td`
   white-space: ${p => p.comment && "nowrap"};
   overflow: ${p => p.comment && "hidden"};
   text-overflow: ellipsis;
+  word-wrap: break-word;
 `;
 
 export const NoTransactions = styled.p`
