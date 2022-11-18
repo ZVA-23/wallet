@@ -14,7 +14,6 @@ const initialState = {
 	summary: null,
 	isLoading: false,
 	error: null,
-	totalBalance: 0,
 }
 
 const handlePending = state => {
@@ -36,7 +35,6 @@ const transactionsSlice = createSlice({
 		[getAllTransactions.fulfilled](state, action) {
 			state.isLoading = false;
 			state.items = action.payload;
-			state.totalBalance = action.payload[action.payload.length - 1].balanceAfter;
 		},
 		[createTransaction.pending]: handlePending,
 		[createTransaction.rejected]: handleRejected,

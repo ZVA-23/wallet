@@ -20,6 +20,7 @@ import { useLocation } from 'react-router-dom';
 import StatisticsSubPage from 'pages/StatisticsSubPage/StatisticsSubPage';
 import { CurrencySubPage } from 'pages/CurrencySubPage/CurrencySubPage';
 import { UserPanel } from '../../components/UserPanel/UserPanel';
+import { refreshUser } from 'redux/auth/operations';
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -31,7 +32,8 @@ const HomePage = () => {
 	useEffect(() => {
 		dispatch(getTransactionCategories());
 		dispatch(getAllTransactions());
-		dispatch(getTransactionsSummary({ month: 11, year: 2022 }))
+		dispatch(getTransactionsSummary({ month: 11, year: 2022 }));
+		dispatch(refreshUser());
 	}, [dispatch]);
 
 	const renderSubPage = () => {

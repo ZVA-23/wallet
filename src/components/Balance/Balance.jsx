@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectTransactions } from 'redux/selectors';
+import { selectAuth } from 'redux/selectors';
 import { numberWithSpaces } from "helpers/numberWithSpaces";
 
 import {
@@ -7,11 +7,16 @@ import {
 	BalanceContent,
 	BalanceTitle,
 	BalanceTotal,
-	BalanceIcon
 } from './Balance.styled';
+import { useEffect, useState } from 'react';
 
 export const Balance = () => {
-	const transactions = useSelector(selectTransactions);
+	const currentBalance = useSelector(selectAuth);
+	const [balance, setBalance] = useState(numberWithSpaces(currentBalance.balance.toFixed(2)));
+
+	useEffect(() => {
+		setBalance(numberWithSpaces(currentBalance.balance.toFixed(2)))
+	}, [currentBalance.balance])
 
 	return (
 		<BalanceWrap>
@@ -20,12 +25,10 @@ export const Balance = () => {
 					Your balance
 				</BalanceTitle>
 				<BalanceTotal>
-					<BalanceIcon>
-						&#8372;
-					</BalanceIcon>
-					{` ${numberWithSpaces(transactions.totalBalance.toFixed(2))}`}
+					{`₴ ${balance}`}
 				</BalanceTotal>
 			</BalanceContent>
 		</BalanceWrap>
 	);
 };
+

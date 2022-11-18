@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTransactions, selectTransactionsSummary } from 'redux/selectors';
+import { selectTransactions, selectAuth, selectTransactionsSummary } from 'redux/selectors';
 import { getTransactionsSummary } from 'redux/transactions/operations';
 import { Box, BoxChart, BoxTitle, Title, BoxSelect, Inner, Balance } from './DiagramTab.styled';
 import { Chart } from "components/Chart/Chart";
@@ -9,15 +9,14 @@ import { SelectForm } from 'components/SelectForm/SelectForm';
 // import { Loader } from "components/Loader/Loader";
 import { numberWithSpaces } from "helpers/numberWithSpaces";
 
+
+
 export const DiagramTab = () => {
-
 	const dispatch = useDispatch();
-	const transactions = useSelector(selectTransactions);
 	const transactionsSummary = useSelector(selectTransactionsSummary);
+	const currentBalance = useSelector(selectAuth);
+	const totalBalance = numberWithSpaces(currentBalance.balance.toFixed(2));
 
-	const totalBalance = numberWithSpaces(transactions.totalBalance.toFixed(2));
-  console.log(transactions);
-  console.log(transactionsSummary);
 	const [numberMonth, setNumberMonth] = useState(new Date().getMonth() + 1);
 	const [numberYear, setNumberYear] = useState(new Date().getFullYear());
 	const isLoading = useSelector(selectTransactions).isLoading;
@@ -31,7 +30,7 @@ export const DiagramTab = () => {
 	return (
 		<>
 			<Box>
-			{/* {isLoading && <Loader />} */}
+				{/* {isLoading && <Loader />} */}
 				{!isLoading &&
 					(<><BoxTitle>
 						<Title>Statistics</Title>
