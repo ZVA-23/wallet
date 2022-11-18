@@ -101,8 +101,8 @@ export const Td = styled.td`
     "var(--incom-text-color)" :
     p.sum && "var(--expense-text-color)")};
 
-  white-space: nowrap; 
-  overflow: hidden; 
+  white-space: ${p => p.comment && "nowrap"};
+  overflow: ${p => p.comment && "hidden"};
   text-overflow: ellipsis;
 `;
 

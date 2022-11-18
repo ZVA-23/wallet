@@ -74,3 +74,8 @@ button {
 	font-family: inherit;
 	cursor: pointer;
 }
+
+table .noOverflow {
+	white-space: normal;
+	overflow: visible;
+}
