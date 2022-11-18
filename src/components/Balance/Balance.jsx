@@ -1,23 +1,24 @@
 import { useSelector } from 'react-redux';
-import { selectTransactions } from 'redux/selectors';
+import { selectAuth } from 'redux/selectors';
 
 import {
 	BalanceWrap,
 	BalanceContent,
 	BalanceTitle,
 	BalanceTotal,
-   BalanceIcon
+	BalanceIcon
 } from './Balance.styled';
 
 export const Balance = () => {
-	const transactions = useSelector(selectTransactions);
+	const currentBalance = useSelector(selectAuth);
 
 	return (
 		<BalanceWrap>
 			<BalanceContent>
 				<BalanceTitle>Your balance</BalanceTitle>
-				<BalanceTotal><BalanceIcon>&#8372;</BalanceIcon>  {transactions.totalBalance.toFixed(2)}</BalanceTotal>
+				<BalanceTotal><BalanceIcon>&#8372;</BalanceIcon>{currentBalance.balance}</BalanceTotal>
 			</BalanceContent>
 		</BalanceWrap>
 	);
 };
+

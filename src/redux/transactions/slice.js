@@ -34,9 +34,14 @@ const transactionsSlice = createSlice({
 		[getAllTransactions.pending]: handlePending,
 		[getAllTransactions.rejected]: handleRejected,
 		[getAllTransactions.fulfilled](state, action) {
+			console.log(action.payload);
 			state.isLoading = false;
 			state.items = action.payload;
-			state.totalBalance = action.payload[action.payload.length - 1].balanceAfter;
+			if (action.payload.length > 0) {
+				state.totalBalance = action.payload[action.payload.length - 1].balanceAfter;
+			} else {
+				state.totalBalance = 0;
+			}
 		},
 		[createTransaction.pending]: handlePending,
 		[createTransaction.rejected]: handleRejected,

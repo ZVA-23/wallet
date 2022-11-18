@@ -8,7 +8,10 @@ import { createTransaction } from "redux/transactions/operations";
 import { ReactComponent as Arrow } from "../../icons/add-transactions/arrow-selector.svg";
 import { AddTransactionsWrapper, Title, CheckWrapper, Expense, Income, Checkbox, CastomCheckbox, CastomCheckboxWrapp, Form, InputField, Comment, SubmitBtn, CancelBtn, SelectorWrapper, Selector, SelectList, SelectListItem, DateInput, InputWrapper } from "./ModalAddTransaction.styled"
 
+import { refreshUser } from "redux/auth/operations";
+
 export const ModalAddTransactions = ({ showModalHandler }) => {
+
 	const dispatch = useDispatch();
 	const transactions = useSelector(selectTransactions);
 	const categories = [...transactions.categories];
@@ -87,13 +90,14 @@ export const ModalAddTransactions = ({ showModalHandler }) => {
 		}
 
 		if (type === "EXPENSE" && Number(amount) > transactions.totalBalance) {
-			toast.error("You don'n have enought money");
+			toast.error("You don't have enought money");
 			return;
 		}
 
 		validate(data, validator)
 			.then(() => {
 				dispatch(createTransaction(data));
+				dispatch(refreshUser())
 
 				showModalHandler();
 				toast.success("Transation is added!")
