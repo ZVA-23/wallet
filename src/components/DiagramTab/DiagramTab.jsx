@@ -6,7 +6,8 @@ import { Box, BoxChart, BoxTitle, Title, BoxSelect, Inner, Balance } from './Dia
 import { Chart } from "components/Chart/Chart";
 import { Table } from "components/Table/Table";
 import { SelectForm } from 'components/SelectForm/SelectForm';
-import { Loader } from "components/Loader/Loader";
+// import { Loader } from "components/Loader/Loader";
+import { numberWithSpaces } from "helpers/numberWithSpaces";
 
 
 
@@ -16,7 +17,9 @@ export const DiagramTab = () => {
 	// const transactions = useSelector(selectTransactions);
 	const transactionsSummary = useSelector(selectTransactionsSummary);
 	const currentBalance = useSelector(selectAuth);
-	const totalBalance = currentBalance.balance.toFixed(2);
+	// const totalBalance = currentBalance.balance.toFixed(2);
+
+	const totalBalance = numberWithSpaces(currentBalance.balance.toFixed(2));
 
 	const [numberMonth, setNumberMonth] = useState(new Date().getMonth() + 1);
 	const [numberYear, setNumberYear] = useState(new Date().getFullYear());
@@ -30,14 +33,14 @@ export const DiagramTab = () => {
 
 	return (
 		<>
-			{isLoading && <Loader />}
 			<Box>
+				{/* {isLoading && <Loader />} */}
 				{!isLoading &&
 					(<><BoxTitle>
 						<Title>Statistics</Title>
 						<BoxChart>
 							<Chart />
-							{transactionsSummary.categoriesSummary.length > 0 &&
+							{transactionsSummary.categoriesSummary.filter(e => e.type === "EXPENSE").length > 0 &&
 								<Balance>{`₴ ${totalBalance}`}</Balance>}
 						</BoxChart>
 					</BoxTitle>

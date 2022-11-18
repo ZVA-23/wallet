@@ -11,7 +11,7 @@ export const UserPanel = () => {
 			<NavAndInfoWrapper>
 				<div>
 					<Navigation />
-					<Balance />
+				  <Balance />
 				</div>
 				{!isMobile && <Currency />}
 			</NavAndInfoWrapper>

@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { selectAuth } from 'redux/selectors';
+import { numberWithSpaces } from "helpers/numberWithSpaces";
 
 import {
 	BalanceWrap,
@@ -15,8 +16,15 @@ export const Balance = () => {
 	return (
 		<BalanceWrap>
 			<BalanceContent>
-				<BalanceTitle>Your balance</BalanceTitle>
-				<BalanceTotal><BalanceIcon>&#8372;</BalanceIcon>{currentBalance.balance}</BalanceTotal>
+				<BalanceTitle>
+					Your balance
+				</BalanceTitle>
+				<BalanceTotal>
+					<BalanceIcon>
+						&#8372;
+					</BalanceIcon>
+					{` ${numberWithSpaces(currentBalance.balance.toFixed(2))}`}
+				</BalanceTotal>
 			</BalanceContent>
 		</BalanceWrap>
 	);
