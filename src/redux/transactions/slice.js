@@ -41,7 +41,6 @@ const transactionsSlice = createSlice({
 		[createTransaction.fulfilled](state, action) {
 			state.isLoading = false;
 			state.items.push(action.payload);
-			state.totalBalance = action.payload.balanceAfter;
 		},
 		[deleteTransaction.pending]: handlePending,
 		[deleteTransaction.rejected]: handleRejected,
